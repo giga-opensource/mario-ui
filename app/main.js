@@ -1,17 +1,17 @@
 /** @jsx React.DOM */
-var React, App, Login, Router, NotFound;
 
-React = require('react');
-Router = require('react-router');
+var React = require('react');
+var Router = require('react-router');
 
 var Route = Router.Route;
 var NotFoundRoute = Router.NotFoundRoute;
 var DefaultRoute = Router.DefaultRoute;
 
-AppRoot = require('./root.js');
-Login = require('./components/login.js');
-Dashboard = require('./components/dashboard.js');
-NotFound = require('./components/404.js');
+// react components
+var AppRoot = require('./root.js');
+var Login = require('./components/login.js');
+var Dashboard = require('./components/dashboard.js');
+var NotFound = require('./components/404.js');
 
 var routes = (
   <Route name='root' path='/'>
