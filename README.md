@@ -5,7 +5,9 @@ Mario UI is the front end project for Mario(project management tool).
 ### Install
 
 * Git clone the repo
-* Run `npm install`
+* Run `npm install` or `npm install -g`
+
+If there are some errors like **error rolling back Error: EACCES, unlink '/usr/local/lib/node_modules**, please try `"sudo chown -R $(id -un):staff /usr/local/lib/node_modules"`
 
 ### Development
 
@@ -14,3 +16,8 @@ Mario UI is the front end project for Mario(project management tool).
 ### Build Release
 
 * Run `gulp deploy`
+
+----
+
+### NOTES
+
