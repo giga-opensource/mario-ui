@@ -17,6 +17,7 @@ var connect = require('gulp-connect');
 var rev = require('gulp-rev');
 var buffer = require('gulp-buffer');
 var revReplace = require('gulp-rev-replace');
+var streamify = require('gulp-streamify');
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
