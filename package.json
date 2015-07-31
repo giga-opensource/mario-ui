@@ -28,6 +28,7 @@
     "gulp-streamify": "0.0.5"
   },
   "dependencies": {
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
   }
 }
