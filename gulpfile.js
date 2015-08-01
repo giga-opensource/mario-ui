@@ -145,7 +145,7 @@ var cssTask = function (options) {
       var start = new Date();
       console.log('Building CSS bundle');
       gulp.src(options.src)
-        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+        .pipe(sass().on('error', sass.logError))
         .pipe(concat('main.css'))
         .pipe(gulp.dest(options.dest))
         .pipe(livereload())
@@ -154,7 +154,7 @@ var cssTask = function (options) {
         }));
     };
     run();
-    gulp.watch(options.src, run);
+    gulp.watch(options.watchSrc, run);
   } else {
     gulp.src(options.src)
       .pipe(sass({outputStyle: 'compressed'}))
@@ -186,7 +186,8 @@ gulp.task('default', function () {
 
   cssTask({
     development: true,
-    src: './styles/**/*.scss',
+    src: './styles/style.scss',
+    watchSrc: './styles/**/*.scss',
     dest: './build'
   });
 
@@ -207,7 +208,8 @@ gulp.task('deploy', function () {
 
   cssTask({
     development: false,
-    src: './styles/**/*.scss',
+    src: './styles/style.scss',
+    watchSrc: './styles/**/*.scss',
     dest: './dist'
   });
 
