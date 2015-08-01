@@ -148,6 +148,7 @@ var cssTask = function (options) {
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(concat('main.css'))
         .pipe(gulp.dest(options.dest))
+        .pipe(livereload())
         .pipe(notify(function () {
           console.log('CSS bundle built in ' + (Date.now() - start) + 'ms');
         }));
