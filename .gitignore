@@ -1,12 +1,16 @@
 node_modules
+build/main.css
+build/main.scss
 build/main.js
 build/specs.js
 build/vendors.js
 
 dist/main.js
 dist/main.css
+dist/main.scss
 dist/main-*.js
 dist/main-*.css
+dist/main-*.scss
 dist/*manifest.json
 
 .DS_Store
