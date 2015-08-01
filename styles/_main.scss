@@ -1,0 +1,53 @@
+html, body {
+  height: 100%;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+body {
+  margin: 0;
+  background-color: lightblue;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+
+
+.app-container {
+  height: 100%;
+  min-width: 800px;
+}
+
+.app-head {
+  z-index: 800;
+  position: fixed;
+  top: 0;
+  height: 40px;
+  width: 100%;
+  min-width: 800px;
+  background-color: #fff;
+}
+
+.app-body {
+  min-height: 100%;
+  padding-top: 50px;
+}
+
+
+.form__input {
+  display: block;
+  height: 40px;
+  width: 100%;
+  padding: 6px 12px 3px;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  box-sizing: border-box;
+}

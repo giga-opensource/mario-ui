@@ -1,0 +1,47 @@
+/*Only used in Login.*/
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 550px;
+}
+
+/* Vertical Align Login Block */
+.login-block {
+  overflow: visible;
+  margin: 0 auto;
+  padding-bottom: 70px; /* for the footer */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.login-block__content {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 350px;
+}
+
+.login-block__header {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.login-block__text {
+  color: rgba(255,255,255,0.7);
+  font-weight: 300;
+}
+
+.login-block__input {
+  height: 40px;
+  width: 350px;
+  margin-bottom: 5px;
+  border-radius: 2px;
+}
+
+.login-block__button {
+  width: 100%;
+  margin-top: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
