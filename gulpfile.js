@@ -18,6 +18,7 @@ var rev = require('gulp-rev');
 var buffer = require('gulp-buffer');
 var revReplace = require('gulp-rev-replace');
 var streamify = require('gulp-streamify');
+var sass = require('gulp-sass');
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
@@ -144,6 +145,7 @@ var cssTask = function (options) {
       var start = new Date();
       console.log('Building CSS bundle');
       gulp.src(options.src)
+        .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         .pipe(concat('main.css'))
         .pipe(gulp.dest(options.dest))
         .pipe(notify(function () {
@@ -154,12 +156,13 @@ var cssTask = function (options) {
     gulp.watch(options.src, run);
   } else {
     gulp.src(options.src)
+      .pipe(sass({outputStyle: 'compressed'}))
       .pipe(concat('main.css'))
       .pipe(cssmin())
       .pipe(rev())
       .pipe(gulp.dest(options.dest))
       .pipe(rev.manifest("css-manifest.json"))
-      .pipe(gulp.dest(options.dest))
+      .pipe(gulp.dest(options.dest));
   }
 }
 
@@ -182,7 +185,7 @@ gulp.task('default', function () {
 
   cssTask({
     development: true,
-    src: './styles/**/*.css',
+    src: './styles/**/*.scss',
     dest: './build'
   });
 
@@ -203,7 +206,7 @@ gulp.task('deploy', function () {
 
   cssTask({
     development: false,
-    src: './styles/**/*.css',
+    src: './styles/**/*.scss',
     dest: './dist'
   });
 
