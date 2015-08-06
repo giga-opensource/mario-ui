@@ -1,6 +1,4 @@
-var React = require('react');
-
-var NotFound = React.createClass({
+module.exports = React.createClass({
   render: function () {
     return (
       <div>
@@ -9,5 +7,3 @@ var NotFound = React.createClass({
     );
   }
 });
-
-module.exports = NotFound;
