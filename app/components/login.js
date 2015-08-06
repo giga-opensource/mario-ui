@@ -1,6 +1,5 @@
-/** @jsx React.DOM */
-var React = require('react');
 var ErrorNotice = require('./error_notice.js')
+var Link = ReactRouter.Link;
 
 var SignUp = React.createClass({
   getInitialState: function(){
@@ -25,7 +24,7 @@ var SignUp = React.createClass({
           <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>
           <input name="commit" value="Sign Up" className="form__input button button--primary login-block__button" type="submit" />
         </form>
-        <a onClick={this.props.onChangeViewMode} > Already have an account? Log in. </a>
+        <li><a onClick={this.props.onChangeViewMode} > Already have an account? Log in. </a></li>
       </div>
     );
   }
@@ -52,8 +51,8 @@ var SignIn = React.createClass({
           <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>
           <input name="commit" value="Sign in" className="form__input button button--primary login-block__button" type="submit" />
         </form>
-        <p><a onClick={this.props.onChangeViewMode} > Forgot password? </a></p>
-        <p><a onClick={this.props.onChangeViewMode} > No account? Sign up.</a></p>
+        <li> <Link to='findPassword'> Forgot password? </Link></li>
+        <li> <a onClick={this.props.onChangeViewMode} > No account? Sign up.</a> </li>
       </div>
     );
   }

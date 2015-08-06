@@ -1,6 +1,6 @@
-var _accessToken = sessionStorage.getItem('accessToken')
+var _accessToken = sessionStorage.getItem('accessToken');
 
-var SessionStore = ({
+module.exports = ({
 
   isLoggedIn: function() {
     return _accessToken ? true : false;
@@ -11,5 +11,3 @@ var SessionStore = ({
   }
 
 });
-
-module.exports = SessionStore;

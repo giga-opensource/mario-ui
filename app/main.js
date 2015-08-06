@@ -1,10 +1,11 @@
-/** @jsx React.DOM */
-
 var React = require('react');
 var Router = require('react-router');
 
-routes = require('./routes.js')
+window.React = React;
+window.ReactRouter = Router;
 
-Router.run(routes, Router.HashLocation, function (Handler) {
+routes = require('./routes.js');
+
+Router.run(routes, function (Handler) {
   React.render(<Handler/>, document.body);
 });
