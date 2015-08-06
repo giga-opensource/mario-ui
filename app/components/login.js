@@ -16,10 +16,9 @@ var SignUp = React.createClass({
     this.setState({errors: ["Some Errors"]});
   },
   render: function() {
-    var errors = (this.state.errors.length > 0) ? <ErrorNotice errors={this.state.errors}/> : <div></div>;
     return (
       <div>
-        {errors}
+        <ErrorNotice errors={this.state.errors} />
         <form className="login-block__form" onSubmit={this.onSubmit}>
           <input className="form__input login-block__input" placeholder="User Name" type="text" ref='username'/>
           <input className="form__input login-block__input" placeholder="Email" type="email" ref='email'/>
@@ -43,13 +42,11 @@ var SignIn = React.createClass({
       password: this.refs.password.getDOMNode().value,
     };
     this.setState({errors: ["Invalid email or password"]});
-    console.log(user);
   },
   render: function() {
-    var errors = (this.state.errors.length > 0) ? <ErrorNotice errors={this.state.errors}/> : <div></div>;
     return (
       <div>
-        {errors}
+        <ErrorNotice errors={this.state.errors} />
         <form className="login-block__form" onSubmit={this.onSubmit}>
           <input className="form__input login-block__input" placeholder="Email" type="email" ref='email'/>
           <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>

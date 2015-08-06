@@ -1,6 +1,3 @@
-// Load an access token from the session storage, you might want to implement
-// a 'remember me' using localSgorage
-
 var _accessToken = sessionStorage.getItem('accessToken')
 
 var SessionStore = ({
