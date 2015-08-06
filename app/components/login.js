@@ -56,6 +56,7 @@ var SignIn = React.createClass({
   _onChange: function() {
     if (SessionStore.isLoggedIn()) {
       this.transitionTo('/dashboard');
+    }
     else {
       this.setState({ errors: SessionStore.getErrors() });
     }
