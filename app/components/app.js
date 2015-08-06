@@ -1,5 +1,5 @@
 var Navigation = require('react-router').Navigation;
-var SessionStore = require('../stores/session_store.js');
+var SessionStore = require('../stores/SessionStore.js');
 
 module.exports = React.createClass({
   mixins: [Navigation],

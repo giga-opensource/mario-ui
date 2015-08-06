@@ -1,5 +1,9 @@
 var ErrorNotice = require('./error_notice.js')
+var Navigation = require('react-router').Navigation;
 var Link = ReactRouter.Link;
+
+var SessionActionCreators = require('../actions/session/ActionCreators.js');
+var SessionStore = require('../stores/SessionStore.js');
 
 var SignUp = React.createClass({
   getInitialState: function(){
@@ -31,17 +35,40 @@ var SignUp = React.createClass({
 });
 
 var SignIn = React.createClass({
+  mixins: [Navigation],
+
   getInitialState: function(){
     return { errors: [] }
   },
+
+  componentDidMount: function() {
+    if (SessionStore.isLoggedIn()) {
+      this.transitionTo('/dashboard');
+    }
+
+    SessionStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    SessionStore.removeChangeListener(this._onChange);
+  },
+
+  _onChange: function() {
+    if (SessionStore.isLoggedIn()) {
+      this.transitionTo('/dashboard');
+    else {
+      this.setState({ errors: SessionStore.getErrors() });
+    }
+  },
+
   onSubmit: function(e){
     e.preventDefault();
-    var user = {
-      email: this.refs.email.getDOMNode().value,
-      password: this.refs.password.getDOMNode().value,
-    };
-    this.setState({errors: ["Invalid email or password"]});
+    this.setState({ errors: [] });
+    var  email =  this.refs.email.getDOMNode().value;
+    var password = this.refs.password.getDOMNode().value;
+    SessionActionCreators.login(email, password);
   },
+
   render: function() {
     return (
       <div>
