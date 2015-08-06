@@ -1,7 +1,8 @@
 var React = require('react');
 var Navigation = require('react-router').Navigation;
+var SessionStore = require('../stores/session_store.js');
 
-var MarioApp = React.createClass({
+module.exports = React.createClass({
   mixins: [Navigation],
 
   componentDidMount: function() {
@@ -16,5 +17,3 @@ var MarioApp = React.createClass({
     return null;
   }
 });
-
-module.exports = MarioApp;

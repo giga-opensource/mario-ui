@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Dashboard = React.createClass({
+module.exports = React.createClass({
   render: function () {
     return (
       <div>
@@ -9,5 +9,3 @@ var Dashboard = React.createClass({
     );
   }
 });
-
-module.exports = Dashboard;
