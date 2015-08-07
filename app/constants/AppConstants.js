@@ -7,7 +7,7 @@ module.exports = {
 
   APIEndpoints: {
     LOGIN:            APIRoot + "/users/sign_in",
-    LOGIN_OUT:        APIRoot + "/users/sign_out"
+    SIGNUP:        APIRoot + "/users/new",
   },
 
   PayloadSources: keyMirror({
@@ -20,6 +20,10 @@ module.exports = {
     LOGIN_REQUEST: null,
     LOGIN_RESPONSE: null,
     LOGOUT: null,
+
+    SIGNUP_REQUEST: null,
+    SIGNUP_RESPONSE: null,
+
 
     // Routes
     REDIRECT: null

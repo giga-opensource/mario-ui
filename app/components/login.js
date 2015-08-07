@@ -6,26 +6,25 @@ var SessionActionCreators = require('../actions/session/ActionCreators.js');
 var SessionStore = require('../stores/SessionStore.js');
 
 var SignUp = React.createClass({
-  getInitialState: function(){
-    return { errors: [] }
-  },
   onSubmit: function(e){
     e.preventDefault();
+    this.setState({ errors: [] });
     var user = {
       username: this.refs.username.getDOMNode().value,
       email: this.refs.email.getDOMNode().value,
       password: this.refs.password.getDOMNode().value,
+      password_confirmation: this.refs.passwordConfirmation.getDOMNode().value,
     };
-    this.setState({errors: ["Some Errors"]});
+    SessionActionCreators.signup(user);
   },
   render: function() {
     return (
       <div>
-        <ErrorNotice errors={this.state.errors} />
         <form className="login-block__form" onSubmit={this.onSubmit}>
           <input className="form__input login-block__input" placeholder="User Name" type="text" ref='username'/>
           <input className="form__input login-block__input" placeholder="Email" type="email" ref='email'/>
           <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>
+          <input className="form__input login-block__input" placeholder="Password Confirmation" type="password" ref='passwordConfirmation'/>
           <input name="commit" value="Sign Up" className="form__input button button--primary login-block__button" type="submit" />
         </form>
         <li><a onClick={this.props.onChangeViewMode} > Already have an account? Log in. </a></li>
@@ -35,10 +34,41 @@ var SignUp = React.createClass({
 });
 
 var SignIn = React.createClass({
+  onSubmit: function(e){
+    e.preventDefault();
+    this.setState({ errors: [] });
+    var  email =  this.refs.email.getDOMNode().value;
+    var password = this.refs.password.getDOMNode().value;
+    SessionActionCreators.login(email, password);
+  },
+
+  render: function() {
+    return (
+      <div>
+        <form className="login-block__form" onSubmit={this.onSubmit}>
+          <input className="form__input login-block__input" placeholder="Email" type="email" ref='email'/>
+          <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>
+          <input name="commit" value="Sign in" className="form__input button button--primary login-block__button" type="submit" />
+        </form>
+        <li> <Link to='findPassword'> Forgot password? </Link></li>
+        <li> <a onClick={this.props.onChangeViewMode} > No account? Sign up.</a> </li>
+      </div>
+    );
+  }
+});
+
+module.exports = React.createClass({
   mixins: [Navigation],
 
-  getInitialState: function(){
-    return { errors: [] }
+  viewEnum: function(){
+    return {
+      SING_IN: 0,
+      SIGN_UP: 1
+    }
+  },
+
+  getInitialState: function() {
+    return { currentView: this.viewEnum().SING_IN, errors: []  }
   },
 
   componentDidMount: function() {
@@ -62,44 +92,11 @@ var SignIn = React.createClass({
     }
   },
 
-  onSubmit: function(e){
-    e.preventDefault();
-    this.setState({ errors: [] });
-    var  email =  this.refs.email.getDOMNode().value;
-    var password = this.refs.password.getDOMNode().value;
-    SessionActionCreators.login(email, password);
-  },
-
-  render: function() {
-    return (
-      <div>
-        <ErrorNotice errors={this.state.errors} />
-        <form className="login-block__form" onSubmit={this.onSubmit}>
-          <input className="form__input login-block__input" placeholder="Email" type="email" ref='email'/>
-          <input className="form__input login-block__input" placeholder="Password" type="password" ref='password'/>
-          <input name="commit" value="Sign in" className="form__input button button--primary login-block__button" type="submit" />
-        </form>
-        <li> <Link to='findPassword'> Forgot password? </Link></li>
-        <li> <a onClick={this.props.onChangeViewMode} > No account? Sign up.</a> </li>
-      </div>
-    );
-  }
-});
-
-module.exports = React.createClass({
-  viewEnum: function(){
-    return {
-      SING_IN: 0,
-      SIGN_UP: 1
-    }
-  },
-  getInitialState: function() {
-    return { currentView: this.viewEnum().SING_IN }
-  },
   onChangeViewMode: function(){
     currentView = this.state.currentView == this.viewEnum().SING_IN ? this.viewEnum().SING_UP : this.viewEnum().SING_IN
     this.setState({currentView: currentView})
   },
+
   render: function(){
     var container = this.state.currentView == this.viewEnum().SING_IN ? (
       <SignIn onChangeViewMode={this.onChangeViewMode} />
@@ -112,6 +109,7 @@ module.exports = React.createClass({
           <div className="login-block__company-logo">
           </div>
           <div className="login-block__content">
+            <ErrorNotice errors={this.state.errors} />
             { container }
           </div>
         </div>

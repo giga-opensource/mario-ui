@@ -52,25 +52,29 @@ var SessionStore = assign({}, EventEmitter.prototype, {
 
 });
 
+var loginAtClient = function(action){
+  if (action.json && action.json.access_token) {
+    _accessToken = action.json.access_token;
+    _email = action.json.email;
+    _username = action.json.username;
+    _userID = action.json.id;
+    sessionStorage.setItem('accessToken', _accessToken);
+    sessionStorage.setItem('email', _email);
+    sessionStorage.setItem('username', _username);
+    sessionStorage.setItem('userID', _userID);
+    _errors = []
+  }
+  if (action.errors) {
+    _errors = action.errors;
+  }
+};
+
 SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   switch(action.type) {
 
     case ActionTypes.LOGIN_RESPONSE:
-      if (action.json && action.json.access_token) {
-        _accessToken = action.json.access_token;
-        _email = action.json.email;
-        _username = action.json.username;
-        _userID = action.json.id;
-        sessionStorage.setItem('accessToken', _accessToken);
-        sessionStorage.setItem('email', _email);
-        sessionStorage.setItem('username', _username);
-        sessionStorage.setItem('userID', _userID);
-        _errors = []
-      }
-      if (action.errors) {
-        _errors = action.errors;
-      }
+      loginAtClient(action)
       SessionStore.emitChange();
       break;
 
@@ -83,6 +87,11 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       sessionStorage.removeItem('email');
       sessionStorage.removeItem('username');
       sessionStorage.removeItem('userID');
+      SessionStore.emitChange();
+      break;
+
+    case ActionTypes.SIGNUP:
+      loginAtClient(action)
       SessionStore.emitChange();
       break;
 

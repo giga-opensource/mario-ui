@@ -11,9 +11,10 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    username = SessionStore.getUserName();
     return (
       <div>
-        <h2>dashboard</h2>
+        <h2>Welcome back! # {username}.</h2>
       </div>
     );
   }

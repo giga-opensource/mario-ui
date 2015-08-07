@@ -13,4 +13,12 @@ module.exports = {
     });
   },
 
+  receiveSignup: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.SINGUP_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };
