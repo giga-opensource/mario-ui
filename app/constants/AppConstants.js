@@ -1,5 +1,5 @@
 var keyMirror = require('keymirror');
-var APIRoot = "http://localhost:3000";
+var APIRoot = document.location.hostname == "localhost" ? "http://localhost:3000" : "http://mario-api.gigabase.org";
 
 module.exports = {
 
