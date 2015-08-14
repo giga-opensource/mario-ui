@@ -14,7 +14,6 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
     ProjectStore.addChangeListener(this._onChange);
-    console.log(sessionStorage.getItem('accessToken'));
     ProjectActionCreators.fetchAll();
   },
 

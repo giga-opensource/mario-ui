@@ -8,8 +8,12 @@ module.exports = {
   APIEndpoints: {
     LOGIN:            APIRoot + "/users/sign_in",
     SIGNUP:         APIRoot + "/users/new",
-    PROJECT_NEW:   APIRoot + "/projects",
+
     PROJECTS_FETCH:   APIRoot + "/projects",
+    PROJECT_NEW:   APIRoot + "/projects",
+
+    ISSUES_FETCH:   APIRoot + "/issues",
+    ISSUE_NEW:      APIRoot + "/issues",
   },
 
   PayloadSources: keyMirror({
@@ -32,6 +36,12 @@ module.exports = {
     PROJECTS_FETCH_RESPONSE: null,
     PROJECT_NEW_REQUEST: null,
     PROJECT_NEW_RESPONSE: null,
+
+    //Issue
+    ISSUES_FETCH_REQUEST: null,
+    ISSUES_FETCH_RESPONSE: null,
+    ISSUE_NEW_REQUEST: null,
+    ISSUE_NEW_RESPONSE: null,
 
     // Routes
     REDIRECT: null

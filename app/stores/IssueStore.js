@@ -6,10 +6,10 @@ var assign = require('object-assign');
 var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-var _errors = [];
-var _projects = []
+var _issues = []
+var _projectId;
 
-var ProjectStore = assign({}, EventEmitter.prototype, {
+var IssueStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -23,27 +23,35 @@ var ProjectStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getProjects: function() {
-    return (_projects || []);
+  getIssues: function() {
+    return (_issues || []);
   },
 
-  getProject: function(id) {
-     // TO DO;
+  getIssue: function(id) {
+    // TO DO
+  },
+
+  getProject: function() {
+    return _projectId;
+  },
+
+  setProject: function(projectId) {
+    _projectId = projectId;
   },
 
 });
 
-ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {
+IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   switch(action.type) {
 
-    case ActionTypes.PROJECTS_FETCH_RESPONSE:
-      _projects = action.json
-      ProjectStore.emitChange();
+    case ActionTypes.ISSUES_FETCH_RESPONSE:
+      _issues = action.json
+      IssueStore.emitChange();
       break;
-    case ActionTypes.PROJECT_NEW_RESPONSE:
-      _projects.push(action.json);
-      ProjectStore.emitChange();
+    case ActionTypes.ISSUE_NEW_RESPONSE:
+      _issues.push(action.json);
+      IssueStore.emitChange();
       break;
 
     default:
@@ -52,4 +60,4 @@ ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {
   return true;
 });
 
-module.exports = ProjectStore;
+module.exports = IssueStore;
