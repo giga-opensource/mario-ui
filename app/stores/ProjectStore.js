@@ -24,7 +24,7 @@ var ProjectStore = assign({}, EventEmitter.prototype, {
   },
 
   getProjects: function() {
-    return _projects;
+    return (_projects || []);
   },
 
   getProject: function(id) {

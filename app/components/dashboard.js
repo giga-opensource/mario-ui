@@ -6,15 +6,16 @@ var ProjectList = require('./projects/list.js');
 module.exports = React.createClass({
   mixins: [Navigation],
 
-  componentDidMount: function() {
-    if (!SessionStore.isLoggedIn()) {
-      this.transitionTo('/s/login');
-    }
-  },
-
   render: function () {
-    return (
-      <ProjectList/>
-    );
+    if (SessionStore.isLoggedIn()) {
+      return (
+        <ProjectList/>
+      );
+    }
+    else {
+      this.transitionTo('/s/login');
+      return null;
+    }
+
   }
 });

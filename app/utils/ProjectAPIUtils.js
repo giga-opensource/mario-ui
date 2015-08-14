@@ -2,14 +2,12 @@ var ProjectServerActionCreators = require('../actions/project/ServerActionCreato
 var AppConstants = require('../constants/AppConstants.js');
 var request = require('superagent');
 
-var _accessToken = sessionStorage.getItem('accessToken')
-
 module.exports = {
 
   fetchAll: function() {
     request.get(AppConstants.APIEndpoints.PROJECTS_FETCH)
       .set('Accept', 'application/json')
-      .set('Authorization', _accessToken)
+      .set('Authorization', this._accessToken())
       .end(function(error, res){
         if (res) {
           if (res.error) {
@@ -27,7 +25,7 @@ module.exports = {
     request.post(AppConstants.APIEndpoints.PROJECT_NEW)
       .send({project: project})
       .set('Accept', 'application/json')
-      .set('Authorization', _accessToken)
+      .set('Authorization', this._accessToken())
       .end(function(error, res){
         if (res) {
           if (res.error) {
@@ -39,6 +37,10 @@ module.exports = {
           }
         }
       });
+  },
+
+  _accessToken: function() {
+    return(sessionStorage.getItem('accessToken'));
   },
 
 };
