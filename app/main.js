@@ -1,8 +1,12 @@
 var React = require('react');
 var Router = require('react-router');
 
+var Modal = require('./utils/Modal.js');
+
 window.React = React;
 window.ReactRouter = Router;
+
+window.Modal = Modal;
 
 routes = require('./routes.js');
 

@@ -23,7 +23,6 @@ module.exports = (
       <Route name="findPassword" path="/password/new" handler={FindPassword} />
     </Route>
     <Route name="project">
-      <Route name="createProject" path="/projects/new" handler={CreateProject} />
       <Route name="showProject" path="/projects/:projectId" handler={ShowProject} />
     </Route>
     <DefaultRoute handler={MarioApp}/>

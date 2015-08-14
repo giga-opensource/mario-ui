@@ -224,3 +224,8 @@ gulp.task('deploy', function () {
 gulp.task('test', function () {
   return gulp.src('./build/testrunner-phantomjs.html').pipe(jasminePhantomJs());
 });
+
+gulp.task('fonts', function() {
+  return gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest('build/fonts'))
+})

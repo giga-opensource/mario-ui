@@ -1,4 +1,4 @@
-var SessionServerActionCreators = require('../actions/session/ServerActionCreators.js');
+var ProjectServerActionCreators = require('../actions/project/ServerActionCreators.js');
 var AppConstants = require('../constants/AppConstants.js');
 var request = require('superagent');
 
@@ -6,35 +6,36 @@ var _accessToken = sessionStorage.getItem('accessToken')
 
 module.exports = {
 
-  login: function(email, password) {
-    request.post(AppConstants.APIEndpoints.LOGIN)
-      .send({ email: email, password: password})
+  fetchAll: function() {
+    request.get(AppConstants.APIEndpoints.PROJECTS_FETCH)
       .set('Accept', 'application/json')
+      .set('Authorization', _accessToken)
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = res.body.errors;
-            SessionServerActionCreators.receiveLogin(null, errorMsgs);
+            ProjectServerActionCreators.reciveFetchAll(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            SessionServerActionCreators.receiveLogin(json, null);
+            ProjectServerActionCreators.reciveFetchAll(json, null);
           }
         }
       });
   },
 
-  signup: function(user) {
-    request.post(AppConstants.APIEndpoints.SIGNUP)
-      .send({user: user, accessToken: _accessToken})
+  projectNew: function(project){
+    request.post(AppConstants.APIEndpoints.PROJECT_NEW)
+      .send({project: project})
       .set('Accept', 'application/json')
+      .set('Authorization', _accessToken)
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = res.body.errors;
-            SessionServerActionCreators.receiveLogin(null, errorMsgs);
+            ProjectServerActionCreators.receiveNew(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            SessionServerActionCreators.receiveLogin(json, null);
+            ProjectServerActionCreators.receiveNew(json, null);
           }
         }
       });
