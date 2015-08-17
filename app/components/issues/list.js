@@ -1,10 +1,11 @@
 var IssueActionCreators = require('../../actions/issue/ActionCreators')
 var IssueStore = require('../../stores/IssueStore.js');
+var IssueDetail = require('../issues/show.js');
 
 module.exports = React.createClass({
 
   getInitialState: function(){
-    return { issues: [] }
+    return { issues: [], showIssue: null }
   },
 
   componentDidMount: function() {
@@ -20,11 +21,16 @@ module.exports = React.createClass({
     this.setState({issues: IssueStore.getIssues()})
   },
 
+  onShowIssueDetail: function(issue){
+    this.setState({showIssue: issue})
+  },
+
   render: function(){
+    that = this;
     var issuesContent = this.state.issues.map(function(issue){
       var assignee = issue.assignee;
       return (
-        <tr>
+        <tr onClick={that.onShowIssueDetail.bind(that, issue)}>
           <td>#{issue.id}</td>
           <td>bug</td>
           <td>High</td>
@@ -38,23 +44,26 @@ module.exports = React.createClass({
     });
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tracker</th>
-            <th>Priority</th>
-            <th>Target Version</th>
-            <th>Subject</th>
-            <th>Creator</th>
-            <th>Assignee</th>
-            <th>Due Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {issuesContent}
-        </tbody>
-      </table>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tracker</th>
+              <th>Priority</th>
+              <th>Target Version</th>
+              <th>Subject</th>
+              <th>Creator</th>
+              <th>Assignee</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {issuesContent}
+          </tbody>
+        </table>
+        <IssueDetail issue={this.state.showIssue}/>
+      </div>
     )
   },
 })
