@@ -43,7 +43,7 @@ module.exports = React.createClass({
   render: function(){
     return (
       <div className="project-list__create-button-wrapper">
-        <button className="project-list__create-button" onClick={this.openModal}>Create New Project</button>
+        <button className="project-list__create-button project__button" onClick={this.openModal}>Create New Project</button>
         <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
           <ErrorNotice errors={this.state.errors} />
           <div><h3><i className='fa fa-times' onClick={this.closeModal}></i></h3></div>

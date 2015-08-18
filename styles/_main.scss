@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+// overwrite the white with black
+.ReactModal__Overlay {
+  background-color: rgba(0,0,0,0.75);
+}
+
 
 .app-container {
   height: 100%;
@@ -43,9 +48,9 @@ a {
 
 
 .form__input {
-  display: block;
+  display: inline-block;
   height: 40px;
-  width: 100%;
+  margin-right: 20px;
   padding: 6px 12px 3px;
   font-size: 14px;
   line-height: 1.42857;
@@ -53,6 +58,40 @@ a {
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  box-sizing: border-box;
+}
+
+
+
+.project__form {
+  // Make this a display: table;
+}
+
+
+.project__button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #2477BF;
+  display: inline-block;
+}
+
+.project__input {
+  display: inline-block;
+  height: 40px;
+  width: 50%;
+  margin-right: 20px;
+  padding: 6px 12px 3px;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   box-sizing: border-box;
 }

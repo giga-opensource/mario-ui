@@ -1,0 +1,45 @@
+.project-issues__container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+
+.project-issues__issues-wrapper {
+  margin: 20px 0;
+  width: 100%;
+}
+
+
+.project-issues__issues-table {
+  width: 100%;
+}
+
+
+.project-issues__issues-list {
+
+}
+
+
+.project-issues__issues-list--header {
+  border-bottom: 1px solid black;
+}
+
+.project-issues__issues-list--body {
+  text-align: center;
+  background-color: white;
+}
+
+.project-issues__issues-row {
+  cursor: pointer;
+  &:hover {
+    background-color: #ccc;
+  }
+}
+
+
+.project-issues__issues-row > td {
+  border: 1px solid black;
+  padding: 6px 3px;
+}
