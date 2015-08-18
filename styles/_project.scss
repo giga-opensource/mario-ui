@@ -4,3 +4,49 @@
   height: 100%;
   min-height: 550px;
 }
+
+.project-list {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.project-list__item-list {
+  margin: 0;
+  padding: 0;
+}
+
+.project-list__item {
+  height: 100px;
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid black;
+  background-color: white;
+  list-style: none;
+  cursor: pointer;
+}
+
+.project-list__item-link {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.project-list__item-name {
+  font-size: 36px;
+  text-decoration: none;
+  padding: 30px;
+}
+
+.project-list__create-button-wrapper {
+  text-align: center;
+}
+
+.project-list__create-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #2477BF;
+}
