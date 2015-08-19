@@ -1,35 +1,13 @@
 var IssueActionCreators = require('../../actions/issue/ActionCreators')
 var IssueStore = require('../../stores/IssueStore.js');
+var IssueClickToTextArea = require('./issue_click_to_textarea.js');
 
 module.exports = React.createClass({
-  getInitialState: function(){
-    return { editing : false }
-  },
-
-  componentDidMount: function() {
-    IssueStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    IssueStore.removeChangeListener(this._onChange);
-  },
-
-  onClick: function(){
-    this.setState({ editing: true });
-  },
-
-  onCancel: function(){
-    this.setState({ editing: false });
-  },
-
+  mixins: [IssueClickToTextArea],
   onSave: function(){
     subject = this.refs.subject.getDOMNode().value ;
     issue = { id: this.props.id, payload: { subject: subject } };
     IssueActionCreators.update(issue)
-  },
-
-  _onChange: function(){
-    this.setState({ editing: false });
   },
 
   render: function(){

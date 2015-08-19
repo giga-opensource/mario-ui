@@ -4,18 +4,13 @@ var Link = ReactRouter.Link;
 var ProjectActionCreators = require('../../actions/project/ActionCreators.js');
 var ProjectStore = require('../../stores/ProjectStore.js');
 
+var ModalToggle = require('../../utils/ModalToggle.js');
+
 module.exports = React.createClass({
+  mixins: [ModalToggle],
 
   getInitialState: function(){
     return { errors: [], modalIsOpen: false }
-  },
-
-  openModal: function() {
-    this.setState({modalIsOpen: true});
-  },
-
-  closeModal: function() {
-    this.setState({modalIsOpen: false});
   },
 
   componentDidMount: function() {

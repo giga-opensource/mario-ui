@@ -13,7 +13,7 @@ module.exports = React.createClass({
           <NewIssue projectId={this.props.params.projectId}/>
           <IssuesList projectId={this.props.params.projectId}/>
           <div className="project__button">
-            <link to="dashboard">Back to Dashboard</link>
+            <Link to="dashboard">Back to Dashboard</Link>
           </div>
         </div>
       </div>
