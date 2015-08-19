@@ -52,7 +52,7 @@ module.exports = React.createClass({
       return (
         <div>
           <div className="issue-card__section">
-            <h4>Description <a style={{'text-decoration': 'underline'}} onClick={this.onClick}>Edit</a></h4>
+            <h4>Description</h4>
           </div>
           <div className="issue-card__section">
             <div className='project-issues__issue-text' onClick={this.onClick}>{issue.description}</div>

@@ -1,4 +1,5 @@
 IssueDescription = require('./issue_description.js')
+IssueSubject = require('./issue_subject.js')
 
 module.exports = React.createClass({
 
@@ -31,9 +32,7 @@ module.exports = React.createClass({
               <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
               <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
             </div>
-            <div className="issue-card__section">
-              <h1 className="issue-card__main-header">{issue.subject}</h1>
-            </div>
+            <IssueSubject id={issue.id}/>
             <div className="issue-card__section">
               <div>
                 <p>
