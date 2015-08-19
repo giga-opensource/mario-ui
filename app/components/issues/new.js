@@ -27,9 +27,9 @@ module.exports = React.createClass({
 
   render: function(){
     return (
-      <form onSubmit={this.onSubmit}>
-        <input type="text" ref='subject'/>
-        <input name="commit" value="Create New Issue" type="submit" />
+      <form className="project__form" onSubmit={this.onSubmit}>
+        <input className="project__input" type="text" ref='subject'/>
+        <input className="project__button" name="commit" value="Create New Issue" type="submit" />
       </form>
     )
   },

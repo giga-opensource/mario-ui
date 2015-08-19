@@ -30,9 +30,9 @@ module.exports = React.createClass({
     var issuesContent = this.state.issues.map(function(issue){
       var assignee = issue.assignee;
       return (
-        <tr onClick={that.onShowIssueDetail.bind(that, issue)}>
-          <td>#{issue.id}</td>
-          <td>bug</td>
+        <tr className="project-issues__issues-row" onClick={that.onShowIssueDetail.bind(that, issue)}>
+          <td>{issue.id}</td>
+          <td>BUG</td>
           <td>High</td>
           <td>v0.6.2</td>
           <td>{issue.subject}</td>
@@ -44,9 +44,9 @@ module.exports = React.createClass({
     });
 
     return (
-      <div>
-        <table>
-          <thead>
+      <div className="project-issues__issues-wrapper">
+        <table className="project-issues__issues-table">
+          <thead className="project-issues__issues-list project-issues__issues-list--header">
             <tr>
               <th>#</th>
               <th>Tracker</th>
@@ -58,7 +58,7 @@ module.exports = React.createClass({
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="project-issues__issues-list project-issues__issues-list--body">
             {issuesContent}
           </tbody>
         </table>

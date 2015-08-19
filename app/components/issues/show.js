@@ -19,18 +19,44 @@ module.exports = React.createClass({
     var issue = this.state.issue;
     if(issue){
       return (
-        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
-          <div><h3><i className='fa fa-times' onClick={this.closeModal}></i></h3></div>
+        <Modal className="issue-card__container" isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
+          <div className="issue-card__close-button">
+            <i className='fa fa-times' onClick={this.closeModal}></i>
+          </div>
           <div>
-            <p> <span>BUG</span><span>Noraml</span> <span>v0.6.2</span></p>
-            <h3>{issue.subject}</h3>
-            <p>Assignee: {issue.assignee ? issue.assignee.username : null}</p>
-            <p>Creator: {issue.creator ? issue.creator.username : null}</p>
-            <h4>Description</h4>
-            <p>{issue.description}</p>
-            <h4>Images</h4>
-            <h4>Files</h4>
-            <h4>Comments</h4>
+            <div className="issue-card__section issue-card__pre-header">
+              <span>BUG</span>
+              <span>Normal</span>
+              <span>v0.6.2</span>
+            </div>
+            <div className="issue-card__section">
+              <h1 className="issue-card__main-header">{issue.subject}</h1>
+            </div>
+            <div className="issue-card__section">
+              <div>
+                <h3>Assignee</h3>
+                <p>{issue.assignee ? issue.assignee.username : null}</p>
+              </div>
+              <div>
+                <h3>Creator</h3>
+                <p>{issue.creator ? issue.creator.username : null}</p>
+              </div>
+            </div>
+            <div className="issue-card__section">
+              <h3>Description</h3>
+            </div>
+            <div className="issue-card__section">
+              <p>{issue.description}</p>
+            </div>
+            <div className="issue-card__section">
+              <h3>Images</h3>
+            </div>
+            <div className="issue-card__section">
+              <h3>Files</h3>
+            </div>
+            <div className="issue-card__section">
+              <h3>Comments</h3>
+            </div>
           </div>
         </Modal>
       )

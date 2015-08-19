@@ -8,10 +8,14 @@ module.exports = React.createClass({
 
   render: function(){
     return (
-      <div >
-        <NewIssue projectId={this.props.params.projectId}/>
-        <IssuesList projectId={this.props.params.projectId}/>
-        <li><Link to="dashboard">Back to Dashboard</Link></li>
+      <div className="project-container">
+        <div className="project-issues__container">
+          <NewIssue projectId={this.props.params.projectId}/>
+          <IssuesList projectId={this.props.params.projectId}/>
+          <div className="project__button">
+            <link to="dashboard">Back to Dashboard</link>
+          </div>
+        </div>
       </div>
     )
   }

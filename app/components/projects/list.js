@@ -33,7 +33,7 @@ module.exports = React.createClass({
     return (
       <div className='project-container'>
         <div className='project-list'>
-          <ul>
+          <ul className='project-list__item-list'>
             {items}
           </ul>
         </div>
