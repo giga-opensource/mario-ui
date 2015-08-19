@@ -14,6 +14,7 @@ module.exports = {
 
     ISSUES_FETCH:   APIRoot + "/issues",
     ISSUE_NEW:      APIRoot + "/issues",
+    ISSUE_UPDATE:      APIRoot + "/issues",
   },
 
   PayloadSources: keyMirror({
@@ -42,6 +43,8 @@ module.exports = {
     ISSUES_FETCH_RESPONSE: null,
     ISSUE_NEW_REQUEST: null,
     ISSUE_NEW_RESPONSE: null,
+    ISSUE_UPDATE_REQUEST: null,
+    ISSUE_UPDATE_RESPONSE: null,
 
     // Routes
     REDIRECT: null

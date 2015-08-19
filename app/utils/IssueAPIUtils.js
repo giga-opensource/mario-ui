@@ -41,6 +41,25 @@ module.exports = {
       });
   },
 
+  issueUpdate: function(issue){
+    var requestUrl = AppConstants.APIEndpoints.ISSUE_UPDATE + '/' + issue.id ;
+    request.put(requestUrl)
+      .send( {issue: issue.payload })
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.receiveUpate(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.receiveUpate(json, null);
+          }
+        }
+      });
+  },
+
   _accessToken: function() {
     return(sessionStorage.getItem('accessToken'));
   },

@@ -20,4 +20,11 @@ module.exports = {
     });
     APIUtils.issueNew(issue);
   },
+
+  update: function(issue) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_UPDATE_REQUEST
+    });
+    APIUtils.issueUpdate(issue);
+  },
 };

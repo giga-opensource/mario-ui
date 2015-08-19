@@ -43,3 +43,14 @@
   border: 1px solid black;
   padding: 6px 3px;
 }
+
+
+.project-issues__issue-text {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.project-issues__issue-textarea {
+  width: 400px;
+  height: 150px;
+}

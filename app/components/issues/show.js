@@ -1,3 +1,5 @@
+IssueDescription = require('./issue_description.js')
+
 module.exports = React.createClass({
 
   getInitialState: function() {
@@ -25,37 +27,34 @@ module.exports = React.createClass({
           </div>
           <div>
             <div className="issue-card__section issue-card__pre-header">
-              <span>BUG</span>
-              <span>Normal</span>
-              <span>v0.6.2</span>
+              <span>{issue.tracker ?  issue.tracker.name : 'No Tracker'}</span>
+              <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
+              <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
             </div>
             <div className="issue-card__section">
               <h1 className="issue-card__main-header">{issue.subject}</h1>
             </div>
             <div className="issue-card__section">
               <div>
-                <h3>Assignee</h3>
-                <p>{issue.assignee ? issue.assignee.username : null}</p>
+                <p>
+                  Assignee:
+                  <span>{issue.assignee ? issue.assignee.username : 'No Assignee'}</span>
+                </p>
+
               </div>
-              <div>
-                <h3>Creator</h3>
-                <p>{issue.creator ? issue.creator.username : null}</p>
-              </div>
+              <p>
+                Creator: <span>{issue.creator ? issue.creator.username : null}</span>
+              </p>
+            </div>
+            <IssueDescription id={issue.id} />
+            <div className="issue-card__section">
+              <h4>Images</h4>
             </div>
             <div className="issue-card__section">
-              <h3>Description</h3>
+              <h4>Files</h4>
             </div>
             <div className="issue-card__section">
-              <p>{issue.description}</p>
-            </div>
-            <div className="issue-card__section">
-              <h3>Images</h3>
-            </div>
-            <div className="issue-card__section">
-              <h3>Files</h3>
-            </div>
-            <div className="issue-card__section">
-              <h3>Comments</h3>
+              <h4>Comments</h4>
             </div>
           </div>
         </Modal>

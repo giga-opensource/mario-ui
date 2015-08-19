@@ -21,4 +21,12 @@ module.exports = {
     });
   },
 
+  receiveUpate: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_UPDATE_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };

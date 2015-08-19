@@ -28,7 +28,27 @@ var IssueStore = assign({}, EventEmitter.prototype, {
   },
 
   getIssue: function(id) {
-    // TO DO
+    var issue;
+    var issues = this.getIssues();
+    for(i = 0; i< issues.length; i++) {
+      _issue = issues[i];
+      if(_issue.id == id){
+        issue = _issue;
+        break;
+      };
+    }
+    return issue;
+  },
+
+  updateIssue: function(issue){
+    var issues = this.getIssues();
+    for(i = 0; i< issues.length; i++) {
+      _issue = issues[i];
+      if(_issue.id == issue.id){
+        _issues[i] = issue;
+        break;
+      };
+    }
   },
 
   getProject: function() {
@@ -51,6 +71,10 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     case ActionTypes.ISSUE_NEW_RESPONSE:
       _issues.push(action.json);
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_UPDATE_RESPONSE:
+      IssueStore.updateIssue(action.json);
       IssueStore.emitChange();
       break;
 
