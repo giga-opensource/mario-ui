@@ -13,6 +13,7 @@ module.exports = {
     PROJECT_NEW:   APIRoot + "/projects",
 
     ISSUES_FETCH:   APIRoot + "/issues",
+    ISSUE_FETCH:   APIRoot + "/issues",
     ISSUE_NEW:      APIRoot + "/issues",
     ISSUE_UPDATE:      APIRoot + "/issues",
   },
@@ -41,6 +42,8 @@ module.exports = {
     //Issue
     ISSUES_FETCH_REQUEST: null,
     ISSUES_FETCH_RESPONSE: null,
+    ISSUE_FETCH_REQUEST: null,
+    ISSUE_FETCH_RESPONSE: null,
     ISSUE_NEW_REQUEST: null,
     ISSUE_NEW_RESPONSE: null,
     ISSUE_UPDATE_REQUEST: null,

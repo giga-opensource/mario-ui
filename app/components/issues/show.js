@@ -1,3 +1,6 @@
+var IssueActionCreators = require('../../actions/issue/ActionCreators')
+var IssueStore = require('../../stores/IssueStore.js');
+
 IssueDescription = require('./issue_description.js')
 IssueSubject = require('./issue_subject.js')
 IssueTracker = require('./issue_tracker.js')

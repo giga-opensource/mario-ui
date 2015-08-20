@@ -14,7 +14,6 @@ var IssuePopOverItemCreator = React.createClass({
 
   onSave: function(){
     var name = this.refs.name.getDOMNode().value;
-    console.log(name);
   },
 
   render: function(){
@@ -72,7 +71,7 @@ module.exports = React.createClass({
           <span onClick={this.togglePopOver}>{issue.tracker ?  issue.tracker.name : 'No Tracker'}</span>
         )
     } else {
-      var project = ProjectStore.getProject(issue.project_id);
+      var project = issue.project;
       var content = project.trackers.map(function(tracker){
         <IssuePopOverItem item={tracker} />
       });

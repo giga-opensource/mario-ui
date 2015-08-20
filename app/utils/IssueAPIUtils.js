@@ -23,6 +23,24 @@ module.exports = {
       });
   },
 
+  fetchIssue: function(issueId) {
+    var fetchUrl = AppConstants.APIEndpoints.ISSUE_FETCH + '/' + issueId ;
+    request.get(fetchUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.reciveFetchIssue(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.reciveFetchIssue(json, null);
+          }
+        }
+      });
+  },
+
   issueNew: function(issue){
     request.post(AppConstants.APIEndpoints.ISSUE_NEW)
       .send({issue: issue})

@@ -13,6 +13,13 @@ module.exports = {
     APIUtils.fetchAll(projectId);
   },
 
+  fetchIssue: function(issueId) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_FETCH_REQUEST
+    });
+    APIUtils.fetchIssue(issueId);
+  },
+
   new: function(issue) {
     AppDispatcher.handleViewAction({
       type: ActionTypes.ISSUE_NEW_REQUEST,

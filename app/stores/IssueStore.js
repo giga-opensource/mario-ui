@@ -7,6 +7,7 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _issues = []
+var _current_issue;
 var _projectId;
 
 var IssueStore = assign({}, EventEmitter.prototype, {
@@ -67,6 +68,10 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
 
     case ActionTypes.ISSUES_FETCH_RESPONSE:
       _issues = action.json
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_FETCH_RESPONSE:
+      IssueStore.updateIssue(action.json);
       IssueStore.emitChange();
       break;
     case ActionTypes.ISSUE_NEW_RESPONSE:

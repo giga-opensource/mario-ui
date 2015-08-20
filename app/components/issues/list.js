@@ -22,6 +22,7 @@ module.exports = React.createClass({
   },
 
   onShowIssueDetail: function(issue){
+    IssueActionCreators.fetchIssue(issue.id)
     this.setState({showIssue: issue})
   },
 

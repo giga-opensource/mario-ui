@@ -13,6 +13,14 @@ module.exports = {
     });
   },
 
+  reciveFetchIssue: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_FETCH_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
   receiveNew: function(json, errors) {
     AppDispatcher.handleServerAction({
       type: ActionTypes.ISSUE_NEW_RESPONSE,
