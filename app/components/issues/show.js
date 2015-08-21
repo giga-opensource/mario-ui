@@ -9,28 +9,13 @@ IssueTargetVersion = require('./issue_target_version.js')
 
 module.exports = React.createClass({
 
-  getInitialState: function() {
-    return { modalIsOpen: false, issue: null }
-  },
-
-  closeModal: function() {
-    this.setState({modalIsOpen: false});
-  },
-
-  componentWillReceiveProps: function(newProps) {
-    if(newProps.issue) {
-      this.setState({issue: newProps.issue});
-      this.setState({modalIsOpen: true});
-    }
-  },
-
   render: function(){
-    var issue = this.state.issue;
+    var issue = this.props.issue;
     if(issue){
       return (
-        <Modal className="issue-card__container" isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} >
+        <Modal className="issue-card__container" isOpen={this.props.modalIsOpen} onRequestClose={this.props.onCloseIsssueDetail} >
           <div className="issue-card__close-button">
-            <i className='fa fa-times' onClick={this.closeModal}></i>
+            <i className='fa fa-times' onClick={this.props.onCloseIsssueDetail}></i>
           </div>
           <div>
             <div className="issue-card__section issue-card__pre-header">

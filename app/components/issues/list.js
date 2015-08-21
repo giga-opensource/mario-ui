@@ -22,8 +22,11 @@ module.exports = React.createClass({
   },
 
   onShowIssueDetail: function(issue){
-    IssueActionCreators.fetchIssue(issue.id)
-    this.setState({showIssue: issue})
+    this.setState({showIssue: issue, modalIsOpen: true})
+  },
+
+  onCloseIsssueDetail: function(){
+    this.setState({modalIsOpen: false})
   },
 
   render: function(){
@@ -63,7 +66,7 @@ module.exports = React.createClass({
             {issuesContent}
           </tbody>
         </table>
-        <IssueDetail issue={this.state.showIssue}/>
+        <IssueDetail issue={this.state.showIssue} modalIsOpen={this.state.modalIsOpen} onCloseIsssueDetail={this.onCloseIsssueDetail}/>
       </div>
     )
   },
