@@ -8,7 +8,7 @@ module.exports = {
 
   fetchAll: function(projectId) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.TRACHERS_FETCH_REQUEST
+      type: ActionTypes.TRACKERS_FETCH_REQUEST,
     });
     APIUtils.fetchAll(projectId);
   },

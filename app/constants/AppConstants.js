@@ -10,17 +10,22 @@ module.exports = {
     SIGNUP:         APIRoot + "/users/new",
 
     PROJECTS_FETCH:   APIRoot + "/projects",
-    PROJECT_NEW:   APIRoot + "/projects",
+    PROJECT_NEW:       APIRoot + "/projects",
 
     ISSUES_FETCH:   APIRoot + "/issues",
-    ISSUE_FETCH:   APIRoot + "/issues",
+    ISSUE_FETCH:    APIRoot + "/issues",
     ISSUE_NEW:      APIRoot + "/issues",
-    ISSUE_UPDATE:      APIRoot + "/issues",
+    ISSUE_UPDATE:   APIRoot + "/issues",
 
     TRACKERS_FETCH:        APIRoot + "/trackers",
     TRACKER_NEW:        APIRoot + "/trackers",
     TRACKER_UPDATE:        APIRoot + "/trackers",
     TRACKER_DELETE:         APIRoot + "/trackers",
+
+    PRIORITIES_FETCH:        APIRoot + "/priorities",
+    PRIORITY_NEW:           APIRoot + "/priorities",
+    PRIORITY_UPDATE:        APIRoot + "/priorities",
+    PRIORITY_DELETE:         APIRoot + "/priorities",
   },
 
   PayloadSources: keyMirror({
@@ -65,6 +70,16 @@ module.exports = {
     TRACKER_UPDATE_RESPONSE: null,
     TRACKER_DELETE_REQUEST: null,
     TRACKER_DELETE_RESPONSE: null,
+
+    //Priority
+    PRIORITIES_FETCH_REQUEST: null,
+    PRIORITIES_FETCH_RESPONSE: null,
+    PRIORITY_NEW_REQUEST: null,
+    PRIORITY_NEW_RESPONSE: null,
+    PRIORITY_UPDATE_REQUEST: null,
+    PRIORITY_UPDATE_RESPONSE: null,
+    PRIORITY_DELETE_REQUEST: null,
+    PRIORITY_DELETE_RESPONSE: null,
 
     // Routes
     REDIRECT: null

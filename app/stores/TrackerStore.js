@@ -71,7 +71,7 @@ var TrackerStore = assign({}, EventEmitter.prototype, {
 TrackerStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   switch(action.type) {
-    case ActionTypes.TRACHERS_FETCH_RESPONSE:
+    case ActionTypes.TRACKERS_FETCH_RESPONSE:
       _trackers = action.json
       TrackerStore.emitChange();
       break;

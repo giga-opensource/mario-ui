@@ -4,6 +4,7 @@ var IssueStore = require('../../stores/IssueStore.js');
 IssueDescription = require('./issue_description.js')
 IssueSubject = require('./issue_subject.js')
 IssueTracker = require('./issue_tracker.js')
+IssuePriority = require('./issue_priority.js')
 
 module.exports = React.createClass({
 
@@ -32,8 +33,8 @@ module.exports = React.createClass({
           </div>
           <div>
             <div className="issue-card__section issue-card__pre-header">
-              <IssueTracker id={issue.id} IssueStore={IssueStore}/>
-              <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
+              <IssueTracker id={issue.id} />
+              <IssuePriority id={issue.id} />
               <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
             </div>
             <IssueSubject id={issue.id}/>
