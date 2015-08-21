@@ -28,9 +28,28 @@ var ProjectStore = assign({}, EventEmitter.prototype, {
   },
 
   getProject: function(id) {
-     // TO DO;
+    var project;
+    var projects = this.getProjects();
+    for(i = 0; i< projects.length; i++) {
+      _project = projects[i];
+      if(_project.id == id){
+        project = _project;
+        break;
+      };
+    }
+    return project;
   },
 
+  updateProject: function(project){
+    var projects = this.getProjects();
+    for(i = 0; i< projects.length; i++) {
+      _project = projects[i];
+      if(_project.id == project.id){
+        _project[i] = project;
+        break;
+      };
+    }
+  },
 });
 
 ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {

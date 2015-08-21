@@ -1,5 +1,9 @@
+var IssueActionCreators = require('../../actions/issue/ActionCreators')
+var IssueStore = require('../../stores/IssueStore.js');
+
 IssueDescription = require('./issue_description.js')
 IssueSubject = require('./issue_subject.js')
+IssueTracker = require('./issue_tracker.js')
 
 module.exports = React.createClass({
 
@@ -28,7 +32,7 @@ module.exports = React.createClass({
           </div>
           <div>
             <div className="issue-card__section issue-card__pre-header">
-              <span>{issue.tracker ?  issue.tracker.name : 'No Tracker'}</span>
+              <IssueTracker id={issue.id} IssueStore={IssueStore}/>
               <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
               <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
             </div>
@@ -47,10 +51,7 @@ module.exports = React.createClass({
             </div>
             <IssueDescription id={issue.id} />
             <div className="issue-card__section">
-              <h4>Images</h4>
-            </div>
-            <div className="issue-card__section">
-              <h4>Files</h4>
+              <h4>Attachments</h4>
             </div>
             <div className="issue-card__section">
               <h4>Comments</h4>

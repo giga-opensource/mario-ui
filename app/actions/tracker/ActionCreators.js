@@ -1,6 +1,6 @@
 var AppDispatcher = require('../../dispatcher/AppDispatcher.js');
 var AppConstants = require('../../constants/AppConstants.js');
-var APIUtils = require('../../utils/IssueAPIUtils.js');
+var APIUtils = require('../../utils/TrackerAPIUtils.js');
 
 var ActionTypes = AppConstants.ActionTypes;
 
@@ -8,30 +8,30 @@ module.exports = {
 
   fetchAll: function(projectId) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.ISSUES_FETCH_REQUEST
+      type: ActionTypes.TRACHERS_FETCH_REQUEST
     });
     APIUtils.fetchAll(projectId);
   },
 
-  fetchIssue: function(issueId) {
+  new: function(tracker) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.ISSUE_FETCH_REQUEST
+      type: ActionTypes.TRACKER_NEW_REQUEST,
+      tracker: tracker
     });
-    APIUtils.fetchIssue(issueId);
+    APIUtils.trackerNew(tracker);
   },
 
-  new: function(issue) {
+  update: function(tracker) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.ISSUE_NEW_REQUEST,
-      issue: issue
+      type: ActionTypes.TRACKER_UPDATE_REQUEST
     });
-    APIUtils.issueNew(issue);
+    APIUtils.trackerUpdate(tracker);
   },
 
-  update: function(issue) {
+  delete: function(trackerId) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.ISSUE_UPDATE_REQUEST
+      type: ActionTypes.TRACKER_DELETE_REQUEST
     });
-    APIUtils.issueUpdate(issue);
+    APIUtils.trackerDelete(trackerId);
   },
 };

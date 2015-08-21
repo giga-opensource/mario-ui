@@ -59,3 +59,73 @@
   width: 100%;
   height: 40px;
 }
+
+.issue-pop-over {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #d6dadc;
+  border-bottom-color: #c4c9cc;
+  box-shadow: 0 1px 6px rgba(0,0,0,.15);
+  overflow: hidden;
+  position: absolute;
+  width: 300px;
+  z-index: 20;
+  -webkit-transform: translate3d(0,0,0);
+  padding-bottom: 10px;
+}
+
+.issue-pop-over__header {
+  height: 36px;
+  position: relative;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.issue-pop-over__header--title {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #8c8c8c;
+  display: block;
+  line-height: 36px;
+  border-bottom: 1px solid #d6dadc;
+  margin: 0 10px;
+  overflow: hidden;
+  padding: 0 32px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.issue-pop-over-header--icon {
+  color: #999;
+  height: 18px;
+  font-size: 12px;
+  line-height: 18px;
+  width: 18px;
+}
+
+.issue-pop-over-header--close-btn {
+  padding: 10px 10px 10px 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.issue-pop-over__create-btn {
+  border-radius: 3px;
+  color: #8c8c8c;
+  display: block;
+  margin: 2px 0;
+  padding: 6px 8px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}

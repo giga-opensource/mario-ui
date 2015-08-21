@@ -7,15 +7,7 @@ module.exports = {
 
   reciveFetchAll: function(json, errors) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.ISSUES_FETCH_RESPONSE,
-      json: json,
-      errors: errors
-    });
-  },
-
-  reciveFetchIssue: function(json, errors) {
-    AppDispatcher.handleServerAction({
-      type: ActionTypes.ISSUE_FETCH_RESPONSE,
+      type: ActionTypes.TRACHERS_FETCH_RESPONSE,
       json: json,
       errors: errors
     });
@@ -23,7 +15,7 @@ module.exports = {
 
   receiveNew: function(json, errors) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.ISSUE_NEW_RESPONSE,
+      type: ActionTypes.TRACKER_NEW_RESPONSE,
       json: json,
       errors: errors
     });
@@ -31,7 +23,15 @@ module.exports = {
 
   receiveUpate: function(json, errors) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.ISSUE_UPDATE_RESPONSE,
+      type: ActionTypes.TRACKER_UPDATE_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveDelete: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.TRACKER_DELETE_RESPONSE,
       json: json,
       errors: errors
     });

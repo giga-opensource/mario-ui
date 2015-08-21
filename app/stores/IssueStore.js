@@ -7,6 +7,7 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _issues = []
+var _current_issue;
 var _projectId;
 
 var IssueStore = assign({}, EventEmitter.prototype, {
@@ -45,10 +46,17 @@ var IssueStore = assign({}, EventEmitter.prototype, {
     for(i = 0; i< issues.length; i++) {
       _issue = issues[i];
       if(_issue.id == issue.id){
-        _issues[i] = issue;
+        var target = _issues[i];
+        _issues[i] = assign(target, issue);
         break;
       };
     }
+  },
+
+  updateIssueAtClient: function(issue, changes){
+    issue = assign(issue, changes);
+    this.updateIssue(issue);
+    this.emitChange();
   },
 
   getProject: function() {
@@ -67,6 +75,10 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
 
     case ActionTypes.ISSUES_FETCH_RESPONSE:
       _issues = action.json
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_FETCH_RESPONSE:
+      IssueStore.updateIssue(action.json);
       IssueStore.emitChange();
       break;
     case ActionTypes.ISSUE_NEW_RESPONSE:

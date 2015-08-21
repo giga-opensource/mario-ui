@@ -1,12 +1,11 @@
-var IssueServerActionCreators = require('../actions/issue/ServerActionCreators.js');
+var TrackerServerActionCreators = require('../actions/tracker/ServerActionCreators.js');
 var AppConstants = require('../constants/AppConstants.js');
 var request = require('superagent');
-
 
 module.exports = {
 
   fetchAll: function(projectId) {
-    request.get(AppConstants.APIEndpoints.ISSUES_FETCH)
+    request.get(AppConstants.APIEndpoints.TRACKERS_FETCH)
       .query({project_id: projectId})
       .set('Accept', 'application/json')
       .set('Authorization', this._accessToken())
@@ -14,65 +13,65 @@ module.exports = {
         if (res) {
           if (res.error) {
             var errorMsgs = res.body.errors;
-            IssueServerActionCreators.reciveFetchAll(null, errorMsgs);
+            TrackerServerActionCreators.reciveFetchAll(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            IssueServerActionCreators.reciveFetchAll(json, null);
+            TrackerServerActionCreators.reciveFetchAll(json, null);
           }
         }
       });
   },
 
-  fetchIssue: function(issueId) {
-    var fetchUrl = AppConstants.APIEndpoints.ISSUE_FETCH + '/' + issueId ;
-    request.get(fetchUrl)
+  trackerNew: function(tracker){
+    request.post(AppConstants.APIEndpoints.TRACKER_NEW)
+      .send({tracker: tracker})
       .set('Accept', 'application/json')
       .set('Authorization', this._accessToken())
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = res.body.errors;
-            IssueServerActionCreators.reciveFetchIssue(null, errorMsgs);
+            TrackerServerActionCreators.receiveNew(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            IssueServerActionCreators.reciveFetchIssue(json, null);
+            TrackerServerActionCreators.receiveNew(json, null);
           }
         }
       });
   },
 
-  issueNew: function(issue){
-    request.post(AppConstants.APIEndpoints.ISSUE_NEW)
-      .send({issue: issue})
-      .set('Accept', 'application/json')
-      .set('Authorization', this._accessToken())
-      .end(function(error, res){
-        if (res) {
-          if (res.error) {
-            var errorMsgs = res.body.errors;
-            IssueServerActionCreators.receiveNew(null, errorMsgs);
-          } else {
-            json = JSON.parse(res.text);
-            IssueServerActionCreators.receiveNew(json, null);
-          }
-        }
-      });
-  },
-
-  issueUpdate: function(issue){
-    var requestUrl = AppConstants.APIEndpoints.ISSUE_UPDATE + '/' + issue.id ;
+  trackerUpdate: function(tracker){
+    var requestUrl = AppConstants.APIEndpoints.TRACKER_UPDATE + '/' + tracker.id ;
     request.put(requestUrl)
-      .send( {issue: issue.payload })
+      .send( { tracker: tracker.payload })
       .set('Accept', 'application/json')
       .set('Authorization', this._accessToken())
       .end(function(error, res){
         if (res) {
           if (res.error) {
             var errorMsgs = res.body.errors;
-            IssueServerActionCreators.receiveUpate(null, errorMsgs);
+            TrackerServerActionCreators.receiveUpate(null, errorMsgs);
           } else {
             json = JSON.parse(res.text);
-            IssueServerActionCreators.receiveUpate(json, null);
+            TrackerServerActionCreators.receiveUpate(json, null);
+          }
+        }
+      });
+  },
+
+  trackerDelete: function(trackerId) {
+    var requestUrl = AppConstants.APIEndpoints.TRACKER_DELETE + '/' + trackerId ;
+    request.del(requestUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            TrackerServerActionCreators.receiveDelete(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            TrackerServerActionCreators.receiveDelete(json, null);
           }
         }
       });
