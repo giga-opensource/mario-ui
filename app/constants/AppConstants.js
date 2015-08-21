@@ -16,6 +16,11 @@ module.exports = {
     ISSUE_FETCH:   APIRoot + "/issues",
     ISSUE_NEW:      APIRoot + "/issues",
     ISSUE_UPDATE:      APIRoot + "/issues",
+
+    TRACKERS_FETCH:        APIRoot + "/trackers",
+    TRACKER_NEW:        APIRoot + "/trackers",
+    TRACKER_UPDATE:        APIRoot + "/trackers",
+    TRACKER_DELETE:         APIRoot + "/trackers",
   },
 
   PayloadSources: keyMirror({
@@ -48,6 +53,16 @@ module.exports = {
     ISSUE_NEW_RESPONSE: null,
     ISSUE_UPDATE_REQUEST: null,
     ISSUE_UPDATE_RESPONSE: null,
+
+    //Tracker
+    TRACKERS_FETCH_REQUEST: null,
+    TRACKERS_FETCH_RESPONSE: null,
+    TRACKER_NEW_REQUEST: null,
+    TRACKER_NEW_RESPONSE: null,
+    TRACKER_UPDATE_REQUEST: null,
+    TRACKER_UPDATE_RESPONSE: null,
+    TRACKER_DELETE_REQUEST: null,
+    TRACKER_DELETE_RESPONSE: null,
 
     // Routes
     REDIRECT: null

@@ -46,7 +46,8 @@ var IssueStore = assign({}, EventEmitter.prototype, {
     for(i = 0; i< issues.length; i++) {
       _issue = issues[i];
       if(_issue.id == issue.id){
-        _issues[i] = issue;
+        var target = _issues[i];
+        _issues[i] = assign(target, issue);
         break;
       };
     }
