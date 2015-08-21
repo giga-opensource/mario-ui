@@ -53,6 +53,8 @@ module.exports = {
     ISSUE_NEW_RESPONSE: null,
     ISSUE_UPDATE_REQUEST: null,
     ISSUE_UPDATE_RESPONSE: null,
+    ISSUE_UPDATE_RESPONSE: null,
+    ISSUE_UPDATE_AT_CLIENT: null,
 
     //Tracker
     TRACKERS_FETCH_REQUEST: null,

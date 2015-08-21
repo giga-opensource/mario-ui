@@ -33,7 +33,7 @@ module.exports = React.createClass({
       return (
         <tr className="project-issues__issues-row" onClick={that.onShowIssueDetail.bind(that, issue)}>
           <td>{issue.id}</td>
-          <td>BUG</td>
+          <td>{issue.tracker? issue.tracker.name: null}</td>
           <td>High</td>
           <td>v0.6.2</td>
           <td>{issue.subject}</td>

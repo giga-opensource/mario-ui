@@ -30,6 +30,19 @@ var TrackerStore = assign({}, EventEmitter.prototype, {
     return (_trackers || []);
   },
 
+  getTracker: function(id) {
+    var tracker;
+    var trackers = this.getTrackers();
+    for(i = 0; i< trackers.length; i++) {
+      _tracker = trackers[i];
+      if(_tracker.id == id){
+        tracker = _tracker;
+        break;
+      };
+    }
+    return tracker;
+  },
+
   updateTracker: function(tracker){
     var trackers = this.getTrackers();
     for(i = 0; i< trackers.length; i++) {

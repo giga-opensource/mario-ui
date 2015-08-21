@@ -1,6 +1,7 @@
 var IssueStore = require('../../stores/IssueStore.js');
 var TrackerStore = require('../../stores/TrackerStore.js');
 var TrackerActionCreators = require('../../actions/tracker/ActionCreators')
+var IssueActionCreators = require('../../actions/issue/ActionCreators')
 
 var IssuePopOverItemCreator = React.createClass({
 
@@ -55,7 +56,13 @@ var IssuePopOverItem = React.createClass({
   onSave: function(){
     name = this.refs.name.getDOMNode().value ;
     tracker = { id: this.props.item.id, payload: { name: name } };
-    TrackerActionCreators.update(tracker)
+    TrackerActionCreators.update(tracker);
+  },
+
+  onUpdateIssue: function(){
+    tracker_id = this.isActiveItem() ? null : this.props.item.id ;
+    issue = { id: this.props.issueId, payload: { tracker_id: tracker_id } };
+    IssueActionCreators.update(issue)
   },
 
   componentWillReceiveProps: function(newProps) {
@@ -70,8 +77,13 @@ var IssuePopOverItem = React.createClass({
     TrackerActionCreators.delete(this.props.item.id);
   },
 
+  isActiveItem: function(){
+    return this.props.activeId  == this.props.item.id
+  },
+
   render: function(){
     var item = this.props.item;
+    var activeContent = this.props.activeId == this.props.item.id ? <i className="fa fa-check"/> : null
     if(this.state.editing) {
       return (
           <div>
@@ -83,7 +95,7 @@ var IssuePopOverItem = React.createClass({
     }else{
       return (
           <li>
-            {item.name}
+            <span onClick={this.onUpdateIssue}>{item.name}  { activeContent }</span>
             <i className='fa fa-pencil' onClick={this.toggleButton} />
             <i className='fa fa-trash-o' onClick={this.onDelete} />
           </li>
@@ -108,13 +120,20 @@ var IssueTrackerList = React.createClass({
   },
 
   _onChange: function(){
-    this.setState({trackers: TrackerStore.getTrackers() })
+    this.setState({trackers: TrackerStore.getTrackers()});
+
+    // Hack way to reset issue tracker,eg edit name, delete.
+    issue = IssueStore.getIssue(this.props.issueId) ;
+    tracker = TrackerStore.getTracker(issue.tracker_id);
+    IssueStore.updateIssueAtClient(issue, {tracker: tracker});
   },
 
   render: function(){
     var trackers = this.state.trackers;
+    var activeId = this.props.activeId;
+    var issueId = this.props.issueId;
     var content = trackers.map(function(tracker){
-      return <IssuePopOverItem item={tracker} />
+      return <IssuePopOverItem item={tracker} activeId={activeId} issueId={issueId}/>
     });
 
     return (
@@ -130,12 +149,6 @@ module.exports = React.createClass({
     return { mode : 'popOverClose' }
   },
 
-  onSave: function(){
-    subject = this.refs.subject.getDOMNode().value ;
-    issue = { id: this.props.id, payload: { subject: subject } };
-    IssueActionCreators.update(issue)
-  },
-
   togglePopOver: function(){
     if(this.state.mode == 'popOverClose'){
       this.setState({mode: 'popOverOpen'});
@@ -146,7 +159,6 @@ module.exports = React.createClass({
 
   render: function(){
     issue = IssueStore.getIssue(this.props.id) ;
-    // Hack way to set issue trackers.
     if (this.state.mode == 'popOverClose') {
       return (
           <span onClick={this.togglePopOver}>{issue.tracker ?  issue.tracker.name : 'No Tracker'}</span>
@@ -161,7 +173,7 @@ module.exports = React.createClass({
               <span className='issue-pop-over__header--title'>Trackers</span>
             </div>
             <div className='issue-pop-over__content'>
-              <IssueTrackerList activeId={issue.tracker_id} projectId={issue.project_id} />
+              <IssueTrackerList activeId={issue.tracker_id} projectId={issue.project_id} issueId={issue.id}/>
               <IssuePopOverItemCreator projectId={issue.project_id} label={'Tracker'}/>
             </div>
           </div>

@@ -32,7 +32,7 @@ module.exports = React.createClass({
           </div>
           <div>
             <div className="issue-card__section issue-card__pre-header">
-              <IssueTracker id={issue.id}/>
+              <IssueTracker id={issue.id} IssueStore={IssueStore}/>
               <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
               <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
             </div>

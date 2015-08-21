@@ -53,6 +53,12 @@ var IssueStore = assign({}, EventEmitter.prototype, {
     }
   },
 
+  updateIssueAtClient: function(issue, changes){
+    issue = assign(issue, changes);
+    this.updateIssue(issue);
+    this.emitChange();
+  },
+
   getProject: function() {
     return _projectId;
   },
