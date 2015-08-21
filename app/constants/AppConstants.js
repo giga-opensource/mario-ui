@@ -26,6 +26,11 @@ module.exports = {
     PRIORITY_NEW:           APIRoot + "/priorities",
     PRIORITY_UPDATE:        APIRoot + "/priorities",
     PRIORITY_DELETE:         APIRoot + "/priorities",
+
+    TARGET_VERSIONS_FETCH:        APIRoot + "/target_versions",
+    TARGET_VERSION_NEW:           APIRoot + "/target_versions",
+    TARGET_VERSION_UPDATE:        APIRoot + "/target_versions",
+    TARGET_VERSION_DELETE:         APIRoot + "/target_versions",
   },
 
   PayloadSources: keyMirror({
@@ -80,6 +85,16 @@ module.exports = {
     PRIORITY_UPDATE_RESPONSE: null,
     PRIORITY_DELETE_REQUEST: null,
     PRIORITY_DELETE_RESPONSE: null,
+
+    //Target version
+    TARGET_VERSIONS_FETCH_REQUEST: null,
+    TARGET_VERSIONS_FETCH_RESPONSE: null,
+    TARGET_VERSION_NEW_REQUEST: null,
+    TARGET_VERSION_NEW_RESPONSE: null,
+    TARGET_VERSION_UPDATE_REQUEST: null,
+    TARGET_VERSION_UPDATE_RESPONSE: null,
+    TARGET_VERSION_DELETE_REQUEST: null,
+    TARGET_VERSION_DELETE_RESPONSE: null,
 
     // Routes
     REDIRECT: null

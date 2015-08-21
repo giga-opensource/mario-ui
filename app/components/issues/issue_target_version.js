@@ -1,6 +1,6 @@
 var IssueStore = require('../../stores/IssueStore.js');
-var PriorityStore = require('../../stores/PriorityStore.js');
-var PriorityActionCreators = require('../../actions/priority/ActionCreators')
+var TargetVersionStore = require('../../stores/TargetVersionStore.js');
+var TargetVersionActionCreators = require('../../actions/target_version/ActionCreators')
 var IssueActionCreators = require('../../actions/issue/ActionCreators')
 
 var IssuePopOverItemCreator = React.createClass({
@@ -14,11 +14,11 @@ var IssuePopOverItemCreator = React.createClass({
   },
 
   componentDidMount: function() {
-    PriorityStore.addChangeListener(this._onChange);
+    TargetVersionStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    PriorityStore.removeChangeListener(this._onChange);
+    TargetVersionStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function(){
@@ -27,8 +27,8 @@ var IssuePopOverItemCreator = React.createClass({
 
   onSave: function(){
     var name = this.refs.name.getDOMNode().value;
-    var priority = {name: name, project_id: this.props.projectId};
-    PriorityActionCreators.new(priority);
+    var target_version = {name: name, project_id: this.props.projectId};
+    TargetVersionActionCreators.new(target_version);
   },
 
   render: function(){
@@ -55,13 +55,13 @@ var IssuePopOverItem = React.createClass({
 
   onSave: function(){
     name = this.refs.name.getDOMNode().value ;
-    priority = { id: this.props.item.id, payload: { name: name } };
-    PriorityActionCreators.update(priority);
+    target_version = { id: this.props.item.id, payload: { name: name } };
+    TargetVersionActionCreators.update(target_version);
   },
 
   onUpdateIssue: function(){
-    priority_id = this.isActiveItem() ? null : this.props.item.id ;
-    issue = { id: this.props.issueId, payload: { priority_id: priority_id } };
+    target_version_id = this.isActiveItem() ? null : this.props.item.id ;
+    issue = { id: this.props.issueId, payload: { target_version_id: target_version_id } };
     IssueActionCreators.update(issue)
   },
 
@@ -74,7 +74,7 @@ var IssuePopOverItem = React.createClass({
   },
 
   onDelete: function(){
-    PriorityActionCreators.delete(this.props.item.id);
+    TargetVersionActionCreators.delete(this.props.item.id);
   },
 
   isActiveItem: function(){
@@ -104,36 +104,36 @@ var IssuePopOverItem = React.createClass({
   },
 });
 
-var IssuePriorityList = React.createClass({
+var IssueTargetVersionList = React.createClass({
 
   getInitialState: function(){
-    return { priorities : [] }
+    return { target_versions : [] }
   },
 
   componentDidMount: function() {
-    PriorityStore.addChangeListener(this._onChange);
-    PriorityActionCreators.fetchAll(this.props.projectId);
+    TargetVersionStore.addChangeListener(this._onChange);
+    TargetVersionActionCreators.fetchAll(this.props.projectId);
   },
 
   componentWillUnmount: function() {
-    PriorityStore.removeChangeListener(this._onChange);
+    TargetVersionStore.removeChangeListener(this._onChange);
   },
 
   _onChange: function(){
-    this.setState({priorities: PriorityStore.getPriorities()});
+    this.setState({target_versions: TargetVersionStore.getTargetVersions()});
 
-    // Hack way to reset issue priority,eg edit name, delete.
+    // Hack way to reset issue target_version,eg edit name, delete.
     issue = IssueStore.getIssue(this.props.issueId) ;
-    priority = PriorityStore.getPriority(issue.priority_id);
-    IssueStore.updateIssueAtClient(issue, {priority: priority});
+    target_version = TargetVersionStore.getTargetVersion(issue.target_version_id);
+    IssueStore.updateIssueAtClient(issue, {target_version: target_version});
   },
 
   render: function(){
-    var priorities = this.state.priorities;
+    var target_versions = this.state.target_versions;
     var activeId = this.props.activeId;
     var issueId = this.props.issueId;
-    var content = priorities.map(function(priority){
-      return <IssuePopOverItem item={priority} activeId={activeId} issueId={issueId}/>
+    var content = target_versions.map(function(version){
+      return <IssuePopOverItem item={version} activeId={activeId} issueId={issueId}/>
     });
 
     return (
@@ -161,20 +161,20 @@ module.exports = React.createClass({
     issue = IssueStore.getIssue(this.props.id) ;
     if (this.state.mode == 'popOverClose') {
       return (
-          <span onClick={this.togglePopOver}>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
+          <span onClick={this.togglePopOver}>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
         )
     } else {
       return (
         <div style={{'display':'inline-block'}}>
-          <span>{issue.priority ?  issue.priority.name : 'No Priority'}</span>
+          <span>{issue.target_version ?  issue.target_version.name : 'No Target Version'}</span>
           <div className='issue-pop-over'>
             <div className='issue-pop-over__header'>
               <a className='issue-pop-over-header--close-btn issue-pop-over-header--icon' onClick={this.togglePopOver}><i className='fa fa-times'></i></a>
-              <span className='issue-pop-over__header--title'>Priorities</span>
+              <span className='issue-pop-over__header--title'>Target Versions</span>
             </div>
             <div className='issue-pop-over__content'>
-              <IssuePriorityList activeId={issue.priority_id} projectId={issue.project_id} issueId={issue.id}/>
-              <IssuePopOverItemCreator projectId={issue.project_id} label={'Priority'}/>
+              <IssueTargetVersionList activeId={issue.target_version_id} projectId={issue.project_id} issueId={issue.id}/>
+              <IssuePopOverItemCreator projectId={issue.project_id} label={'Target Version'}/>
             </div>
           </div>
         </div>
