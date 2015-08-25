@@ -2,15 +2,17 @@ var IssueActionCreators = require('../../actions/issue/ActionCreators')
 var IssueStore = require('../../stores/IssueStore.js');
 var IssueDetail = require('../issues/show.js');
 
+var ReactPaginate = require('react-paginate');
+
 module.exports = React.createClass({
 
   getInitialState: function(){
-    return { issues: [], showIssue: null }
+    return { issues: [], showIssue: null, pageNum: 1, perPage: 20 }
   },
 
   componentDidMount: function() {
     IssueStore.addChangeListener(this._onChange);
-    IssueActionCreators.fetchAll(this.props.projectId)
+    IssueActionCreators.fetchAll(this.props.projectId, { page: 1, perPage: this.state.perPage } )
   },
 
   componentWillUnmount: function() {
@@ -18,7 +20,7 @@ module.exports = React.createClass({
   },
 
   _onChange: function(){
-    this.setState({issues: IssueStore.getIssues()})
+    this.setState({issues: IssueStore.getIssues(), pageNum: IssueStore.getMeta().total_pages})
   },
 
   onShowIssueDetail: function(issue){
@@ -27,6 +29,11 @@ module.exports = React.createClass({
 
   onCloseIsssueDetail: function(){
     this.setState({modalIsOpen: false})
+  },
+
+  handlePageClick: function(data){
+    var selected = data.selected;
+    IssueActionCreators.fetchAll(this.props.projectId, {page: selected+1, perPage: this.state.perPage})
   },
 
   render: function(){
@@ -66,6 +73,16 @@ module.exports = React.createClass({
             {issuesContent}
           </tbody>
         </table>
+        <ReactPaginate previousLabel={"previous"}
+                       nextLabel={"next"}
+                       breakLabel={<li className="break"><a href="">...</a></li>}
+                       pageNum={this.state.pageNum}
+                       marginPagesDisplayed={2}
+                       pageRangeDisplayed={5}
+                       clickCallback={this.handlePageClick}
+                       containerClassName={"pagination"}
+                       subContainerClassName={"pages pagination"}
+                       activeClass={"active"} />
         <IssueDetail issue={this.state.showIssue} modalIsOpen={this.state.modalIsOpen} onCloseIsssueDetail={this.onCloseIsssueDetail}/>
       </div>
     )

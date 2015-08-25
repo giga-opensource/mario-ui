@@ -5,9 +5,11 @@ var request = require('superagent');
 
 module.exports = {
 
-  fetchAll: function(projectId) {
+  fetchAll: function(projectId, params) {
+    params = params ? params : {} ;
     request.get(AppConstants.APIEndpoints.ISSUES_FETCH)
       .query({project_id: projectId})
+      .query(params)
       .set('Accept', 'application/json')
       .set('Authorization', this._accessToken())
       .end(function(error, res){

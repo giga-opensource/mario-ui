@@ -6,11 +6,12 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports = {
 
-  fetchAll: function(projectId) {
+  fetchAll: function(projectId, params) {
+    params = params ? params : {} ;
     AppDispatcher.handleViewAction({
       type: ActionTypes.ISSUES_FETCH_REQUEST
     });
-    APIUtils.fetchAll(projectId);
+    APIUtils.fetchAll(projectId, params);
   },
 
   fetchIssue: function(issueId) {
