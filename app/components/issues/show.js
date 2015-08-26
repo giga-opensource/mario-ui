@@ -7,6 +7,8 @@ IssueTracker = require('./issue_tracker.js')
 IssuePriority = require('./issue_priority.js')
 IssueTargetVersion = require('./issue_target_version.js')
 
+IssueAttachments = require('./issue_attachments.js')
+
 module.exports = React.createClass({
 
   render: function(){
@@ -37,9 +39,7 @@ module.exports = React.createClass({
               </p>
             </div>
             <IssueDescription id={issue.id} />
-            <div className="issue-card__section">
-              <h4>Attachments</h4>
-            </div>
+            <IssueAttachments id={issue.id}/>
             <div className="issue-card__section">
               <h4>Comments</h4>
             </div>

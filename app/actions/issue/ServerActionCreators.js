@@ -37,4 +37,20 @@ module.exports = {
     });
   },
 
+  receiveUploadFiles: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_UPLOAD_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  reciveFetchFiles: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_FETCH_FILES_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };

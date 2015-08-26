@@ -35,4 +35,18 @@ module.exports = {
     });
     APIUtils.issueUpdate(issue);
   },
+
+  uploadFiles: function(issueId, files) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_UPLOAD_REQUEST
+    });
+    APIUtils.issueUploadFiles(issueId, files);
+  },
+
+  fetchFiles: function(issueId) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_FETCH_FILES_REQUEST
+    });
+    APIUtils.issueFetchFiles(issueId);
+  },
 };

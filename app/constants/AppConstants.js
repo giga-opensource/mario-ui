@@ -1,5 +1,4 @@
 var keyMirror = require('keymirror');
-var APIRoot = document.location.hostname == "localhost" ? "http://localhost:3000" : "http://mario-api.gigabase.org";
 
 module.exports = {
 
@@ -12,10 +11,7 @@ module.exports = {
     PROJECTS_FETCH:   APIRoot + "/projects",
     PROJECT_NEW:       APIRoot + "/projects",
 
-    ISSUES_FETCH:   APIRoot + "/issues",
-    ISSUE_FETCH:    APIRoot + "/issues",
-    ISSUE_NEW:      APIRoot + "/issues",
-    ISSUE_UPDATE:   APIRoot + "/issues",
+    ISSUE_BASE:     APIRoot + "/issues",
 
     TRACKERS_FETCH:        APIRoot + "/trackers",
     TRACKER_NEW:        APIRoot + "/trackers",
@@ -65,6 +61,11 @@ module.exports = {
     ISSUE_UPDATE_RESPONSE: null,
     ISSUE_UPDATE_RESPONSE: null,
     ISSUE_UPDATE_AT_CLIENT: null,
+    ISSUE_UPLOAD_REQUEST: null,
+    ISSUE_UPLOAD_RESPONSE: null,
+    ISSUE_FETCH_FILES_REQUEST: null,
+    ISSUE_FETCH_FILES_RESPONSE: null,
+
 
     //Tracker
     TRACKERS_FETCH_REQUEST: null,

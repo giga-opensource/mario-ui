@@ -6,8 +6,8 @@ var assign = require('object-assign');
 var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
-var _issues = []
-var _current_issue, _projectId, _meta
+var _issues = [];
+var _current_issue, _projectId, _meta, _attachments;
 
 var IssueStore = assign({}, EventEmitter.prototype, {
 
@@ -68,7 +68,11 @@ var IssueStore = assign({}, EventEmitter.prototype, {
 
   getMeta: function(){
     return _meta;
-  }
+  },
+
+  getAttachments: function(){
+    return (_attachments || []) ;
+  },
 });
 
 IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
@@ -90,6 +94,14 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     case ActionTypes.ISSUE_UPDATE_RESPONSE:
       IssueStore.updateIssue(action.json);
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_UPLOAD_RESPONSE:
+      _attachments = action.json;
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_FETCH_FILES_RESPONSE:
+      _attachments = action.json;
       IssueStore.emitChange();
       break;
 
