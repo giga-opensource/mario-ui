@@ -1,6 +1,8 @@
 var IssueActionCreators = require('../../actions/issue/ActionCreators')
 var IssueStore = require('../../stores/IssueStore.js');
 
+var TimeAgo = require('react-timeago');
+
 var Activity = React.createClass({
   render: function(){
     activity = this.props.activity;
@@ -14,7 +16,7 @@ var Activity = React.createClass({
             { activity.original }
           </div>
           <div className='issue-card__activity--meta'>
-            <span>{activity.updated_at}</span>
+            <TimeAgo date={activity.updated_at}/>
             <span>Edit</span>
             <span>Delete</span>
           </div>
