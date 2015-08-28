@@ -44,6 +44,7 @@ module.exports = React.createClass({
         <tr className="project-issues__issues-row" onClick={that.onShowIssueDetail.bind(that, issue)}>
           <td>{issue.id}</td>
           <td>{issue.tracker? issue.tracker.name: null}</td>
+          <td>{issue.status? issue.status.name: null}</td>
           <td>{issue.priority? issue.priority.name: null}</td>
           <td>{issue.target_version? issue.target_version.name: null}</td>
           <td>{issue.subject}</td>
@@ -61,6 +62,7 @@ module.exports = React.createClass({
             <tr>
               <th>#</th>
               <th>Tracker</th>
+              <th>Status</th>
               <th>Priority</th>
               <th>Target Version</th>
               <th>Subject</th>

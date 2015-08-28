@@ -6,6 +6,7 @@ IssueSubject = require('./issue_subject.js')
 IssueTracker = require('./issue_tracker.js')
 IssuePriority = require('./issue_priority.js')
 IssueTargetVersion = require('./issue_target_version.js')
+IssueStatus = require('./issue_status.js')
 
 IssueAttachments = require('./issue_attachments.js')
 IssueActivities = require('./issue_activities.js')
@@ -25,6 +26,7 @@ module.exports = React.createClass({
               <IssueTracker id={issue.id} />
               <IssuePriority id={issue.id} />
               <IssueTargetVersion id={issue.id} />
+              <IssueStatus id={issue.id} />
             </div>
             <IssueSubject id={issue.id}/>
             <div className="issue-card__section">

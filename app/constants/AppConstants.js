@@ -29,6 +29,7 @@ module.exports = {
     TARGET_VERSION_DELETE:         APIRoot + "/target_versions",
 
     ACTIVITY_BASE:             APIRoot + "/activities",
+    STATUS_BASE:        APIRoot + "/statuses",
   },
 
   PayloadSources: keyMirror({
@@ -97,6 +98,16 @@ module.exports = {
     TARGET_VERSION_UPDATE_RESPONSE: null,
     TARGET_VERSION_DELETE_REQUEST: null,
     TARGET_VERSION_DELETE_RESPONSE: null,
+
+    //Status
+    STATUSES_FETCH_REQUEST: null,
+    STATUSES_FETCH_RESPONSE: null,
+    STATUS_NEW_REQUEST: null,
+    STATUS_NEW_RESPONSE: null,
+    STATUS_UPDATE_REQUEST: null,
+    STATUS_UPDATE_RESPONSE: null,
+    STATUS_DELETE_REQUEST: null,
+    STATUS_DELETE_RESPONSE: null,
 
 
     //Activity
