@@ -63,5 +63,21 @@ module.exports = {
       issue: issue
     });
     APIUtils.ActivityNew(activity);
-  }
+  },
+
+  ActivityUpdate: function(activity){
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_ACTIVITY_UPDATE_REQUEST,
+      issue: issue
+    });
+    APIUtils.ActivityUpdate(activity);
+  },
+
+  ActivityDelete: function(activityId) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_ACTIVITY_DELETE_REQUEST,
+      id: activityId
+    });
+    APIUtils.ActivityDelete(activityId);
+  },
 };

@@ -77,12 +77,33 @@ var IssueStore = assign({}, EventEmitter.prototype, {
   getActivities: function(){
     return (_activities || []) ;
   },
+
+  updateActivity: function(activity){
+    var activities = this.getActivities();
+    for(i = 0; i< activities.length; i++) {
+      _activity = activities[i];
+      if(_activity.id == activity.id){
+        activities[i] = assign(_activity, activity);
+        break;
+      };
+    }
+  },
+
+  deleteActivity: function(activity){
+    var activities = this.getActivities();
+    for(i = 0; i< activities.length; i++) {
+      _activity = activities[i];
+      if(_activity.id == activity.id){
+        _activities.splice(i,1);
+        break;
+      };
+    }
+  },
 });
 
 IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
   var action = payload.action;
   switch(action.type) {
-
     case ActionTypes.ISSUES_FETCH_RESPONSE:
       _issues = action.json.issues;
       _meta = action.json.meta;
@@ -114,6 +135,14 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     case ActionTypes.ISSUE_ACTIVITY_NEW_RESPONSE:
       _activities.unshift(action.json);
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_ACTIVITY_UPDATE_RESPONSE:
+      IssueStore.updateActivity(action.json)
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_ACTIVITY_DELETE_RESPONSE:
+      IssueStore.deleteActivity(action.json)
       IssueStore.emitChange();
       break;
 

@@ -1,15 +1,45 @@
 var IssueActionCreators = require('../../actions/issue/ActionCreators')
 var IssueStore = require('../../stores/IssueStore.js');
+var IssueClickToTextArea = require('./issue_click_to_textarea.js');
 
 var TimeAgo = require('react-timeago');
+var Gravatar = require('react-gravatar');
 
 var Activity = React.createClass({
+  mixins: [IssueClickToTextArea],
+
+  onSave: function(){
+    original = this.refs.original.getDOMNode().value
+    activity = { id: this.props.activity.id, payload: { original: original } };
+    IssueActionCreators.ActivityUpdate(activity)
+  },
+
+  onDelete: function(){
+    IssueActionCreators.ActivityDelete(this.props.activity.id)
+  },
+
   render: function(){
     activity = this.props.activity;
-    return (
+    if (this.state.editing){
+      return (
         <div className='issue-card__activity'>
           <div className='issue-card__activity--creator'>
-            <img className='issue-card__activity--avatar' src='' />
+            <Gravatar email="sjy@gigabase.org" />
+          </div>
+          <div className='issue-card__activity--desc'>
+            <div className='issue-card__activity--creator-name'>{ activity.creator.username } </div>
+             <textarea ref='original' className='project-issues__issue-comment-textarea'>
+              {activity.original}
+            </textarea>
+            <div><button onClick={this.onSave}>Save</button> <i className='fa fa-times' onClick={this.onCancel}></i></div>
+          </div>
+        </div>
+        )
+    } else{
+      return (
+        <div className='issue-card__activity'>
+          <div className='issue-card__activity--creator'>
+            <Gravatar email="sjy@gigabase.org" />
           </div>
           <div className='issue-card__activity--desc'>
             <div className='issue-card__activity--creator-name'>{ activity.creator.username } </div>
@@ -17,11 +47,12 @@ var Activity = React.createClass({
           </div>
           <div className='issue-card__activity--meta'>
             <TimeAgo date={activity.updated_at}/>
-            <span>Edit</span>
-            <span>Delete</span>
+            <span onClick={this.onClick}>Edit</span>
+            <span onClick={this.onDelete}>Delete</span>
           </div>
         </div>
       )
+    }
   },
 });
 

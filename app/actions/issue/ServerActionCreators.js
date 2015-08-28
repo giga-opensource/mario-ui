@@ -69,4 +69,20 @@ module.exports = {
     });
   },
 
+  reciveActivityUpdate: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_ACTIVITY_UPDATE_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  reciveActivityDelete: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_ACTIVITY_DELETE_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };

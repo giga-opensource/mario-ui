@@ -159,6 +159,43 @@ module.exports = {
       });
   },
 
+  ActivityUpdate: function(activity) {
+    var requestUrl = AppConstants.APIEndpoints.ACTIVITY_BASE + '/' + activity.id;
+    request.put(requestUrl)
+      .send({activity: activity.payload})
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.reciveActivityUpdate(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.reciveActivityUpdate(json, null);
+          }
+        }
+      });
+  },
+
+  ActivityDelete: function(activityId){
+    var requestUrl = AppConstants.APIEndpoints.ACTIVITY_BASE + '/' + activity.id;
+    request.del(requestUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.reciveActivityDelete(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.reciveActivityDelete(json, null);
+          }
+        }
+      });
+  },
+
   _accessToken: function() {
     return(sessionStorage.getItem('accessToken'));
   },
