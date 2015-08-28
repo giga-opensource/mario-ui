@@ -122,6 +122,43 @@ module.exports = {
       });
   },
 
+  issueFetchActivities: function(issueId){
+    var requestUrl = AppConstants.APIEndpoints.ACTIVITY_BASE;
+    request.get(requestUrl)
+      .query({issue_id: issueId})
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.reciveFetchActivities(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.reciveFetchActivities(json, null);
+          }
+        }
+      });
+  },
+
+  ActivityNew: function(activity) {
+    request.post(AppConstants.APIEndpoints.ACTIVITY_BASE)
+      .send({activity: activity})
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            IssueServerActionCreators.reciveNewActivity(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            IssueServerActionCreators.reciveNewActivity(json, null);
+          }
+        }
+      });
+  },
+
   _accessToken: function() {
     return(sessionStorage.getItem('accessToken'));
   },

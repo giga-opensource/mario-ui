@@ -53,4 +53,20 @@ module.exports = {
     });
   },
 
+  reciveFetchActivities: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_FETCH_ACTIVITIES_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
+  reciveNewActivity: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.ISSUE_ACTIVITY_NEW_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };

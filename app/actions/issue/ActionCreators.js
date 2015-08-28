@@ -49,4 +49,19 @@ module.exports = {
     });
     APIUtils.issueFetchFiles(issueId);
   },
+
+  fetchActivities: function(issueId){
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_FETCH_ACTIVITIES_REQUEST
+    });
+    APIUtils.issueFetchActivities(issueId);
+  },
+
+  ActivityNew: function(activity) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ISSUE_ACTIVITY_NEW_REQUEST,
+      issue: issue
+    });
+    APIUtils.ActivityNew(activity);
+  }
 };

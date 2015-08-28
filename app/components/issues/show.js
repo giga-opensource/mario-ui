@@ -8,6 +8,7 @@ IssuePriority = require('./issue_priority.js')
 IssueTargetVersion = require('./issue_target_version.js')
 
 IssueAttachments = require('./issue_attachments.js')
+IssueActivities = require('./issue_activities.js')
 
 module.exports = React.createClass({
 
@@ -40,15 +41,12 @@ module.exports = React.createClass({
             </div>
             <IssueDescription id={issue.id} />
             <IssueAttachments id={issue.id}/>
-            <div className="issue-card__section">
-              <h4>Comments</h4>
-            </div>
+            <IssueActivities id={issue.id}/>
           </div>
         </Modal>
       )
     }else {
       return null;
     }
-
   }
 });

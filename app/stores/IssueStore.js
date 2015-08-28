@@ -7,7 +7,7 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _issues = [];
-var _current_issue, _projectId, _meta, _attachments;
+var _current_issue, _projectId, _meta, _attachments, _activities;
 
 var IssueStore = assign({}, EventEmitter.prototype, {
 
@@ -73,6 +73,10 @@ var IssueStore = assign({}, EventEmitter.prototype, {
   getAttachments: function(){
     return (_attachments || []) ;
   },
+
+  getActivities: function(){
+    return (_activities || []) ;
+  },
 });
 
 IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
@@ -102,6 +106,14 @@ IssueStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     case ActionTypes.ISSUE_FETCH_FILES_RESPONSE:
       _attachments = action.json;
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_FETCH_ACTIVITIES_RESPONSE:
+      _activities = action.json;
+      IssueStore.emitChange();
+      break;
+    case ActionTypes.ISSUE_ACTIVITY_NEW_RESPONSE:
+      _activities.unshift(action.json);
       IssueStore.emitChange();
       break;
 

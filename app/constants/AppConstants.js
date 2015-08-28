@@ -27,6 +27,8 @@ module.exports = {
     TARGET_VERSION_NEW:           APIRoot + "/target_versions",
     TARGET_VERSION_UPDATE:        APIRoot + "/target_versions",
     TARGET_VERSION_DELETE:         APIRoot + "/target_versions",
+
+    ACTIVITY_BASE:             APIRoot + "/activities",
   },
 
   PayloadSources: keyMirror({
@@ -66,7 +68,6 @@ module.exports = {
     ISSUE_FETCH_FILES_REQUEST: null,
     ISSUE_FETCH_FILES_RESPONSE: null,
 
-
     //Tracker
     TRACKERS_FETCH_REQUEST: null,
     TRACKERS_FETCH_RESPONSE: null,
@@ -96,6 +97,14 @@ module.exports = {
     TARGET_VERSION_UPDATE_RESPONSE: null,
     TARGET_VERSION_DELETE_REQUEST: null,
     TARGET_VERSION_DELETE_RESPONSE: null,
+
+
+    //Activity
+
+    ISSUE_FETCH_ACTIVITIES_REQUEST: null,
+    ISSUE_FETCH_ACTIVITIES_RESPONSE: null,
+    ISSUE_ACTIVITY_NEW_REQUEST: null,
+    ISSUE_ACTIVITY_NEW_RESPONSE: null,
 
     // Routes
     REDIRECT: null
