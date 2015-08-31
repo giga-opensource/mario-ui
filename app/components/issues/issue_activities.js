@@ -24,7 +24,7 @@ var Activity = React.createClass({
       return (
         <div className='issue-card__activity'>
           <div className='issue-card__activity--creator'>
-            <Gravatar email="sjy@gigabase.org" />
+            <Gravatar email="{activity.creator.email}" />
           </div>
           <div className='issue-card__activity--desc'>
             <div className='issue-card__activity--creator-name'>{ activity.creator.username } </div>
