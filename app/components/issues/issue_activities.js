@@ -36,20 +36,34 @@ var Activity = React.createClass({
         </div>
         )
     } else{
+
+      if(activity.creator.id.toString()==sessionStorage.getItem('userID')){
+        actionContent = (
+          <div className='issue-card__activity--meta'>
+            <TimeAgo date={activity.updated_at}/>
+            <span onClick={this.onClick}>Edit</span>
+            <span onClick={this.onDelete}>Delete</span>
+         </div>
+        )
+      }else{
+        actionContent = (
+          <div className='issue-card__activity--meta'>
+            <TimeAgo date={activity.updated_at}/>
+
+            <span onClick={this.onReply}>Reply</span>
+          </div>
+        )
+      }
       return (
         <div className='issue-card__activity'>
           <div className='issue-card__activity--creator'>
-            <Gravatar email="sjy@gigabase.org" />
+            <Gravatar email={ activity.creator.email }  />
           </div>
           <div className='issue-card__activity--desc'>
             <div className='issue-card__activity--creator-name'>{ activity.creator.username } </div>
             { activity.original }
           </div>
-          <div className='issue-card__activity--meta'>
-            <TimeAgo date={activity.updated_at}/>
-            <span onClick={this.onClick}>Edit</span>
-            <span onClick={this.onDelete}>Delete</span>
-          </div>
+          {actionContent}
         </div>
       )
     }
