@@ -49,7 +49,6 @@ var Activity = React.createClass({
         actionContent = (
           <div className='issue-card__activity--meta'>
             <TimeAgo date={activity.updated_at}/>
-
             <span onClick={this.onReply}>Reply</span>
           </div>
         )

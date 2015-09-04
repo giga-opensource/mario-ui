@@ -20,4 +20,12 @@ module.exports = {
     });
     APIUtils.projectNew(project);
   },
+
+  fetchUsers: function(projectId) {
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.PROJECT_FETCH_USERS_REQUEST,
+      projectId: projectId
+    });
+    APIUtils.projectFetchUsers(projectId);
+  },
 };

@@ -52,6 +52,9 @@ module.exports = {
     PROJECTS_FETCH_RESPONSE: null,
     PROJECT_NEW_REQUEST: null,
     PROJECT_NEW_RESPONSE: null,
+    PROJECT_FETCH_USERS_REQUEST: null,
+    PROJECT_FETCH_USERS_RESPONSE: null,
+
 
     //Issue
     ISSUES_FETCH_REQUEST: null,

@@ -39,6 +39,25 @@ module.exports = {
       });
   },
 
+  projectFetchUsers: function(projectId) {
+    requestUrl = AppConstants.APIEndpoints.PROJECTS_FETCH + '/' + projectId + '/users';
+    request.get(requestUrl)
+      .set('Accept', 'application/json')
+      .set('Authorization', this._accessToken())
+      .end(function(error, res){
+        if (res) {
+          if (res.error) {
+            var errorMsgs = res.body.errors;
+            ProjectServerActionCreators.reciveFetchUsers(null, errorMsgs);
+          } else {
+            json = JSON.parse(res.text);
+            ProjectServerActionCreators.reciveFetchUsers(json, null);
+          }
+        }
+      });
+
+  },
+
   _accessToken: function() {
     return(sessionStorage.getItem('accessToken'));
   },

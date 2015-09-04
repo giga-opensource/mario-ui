@@ -21,4 +21,12 @@ module.exports = {
     });
   },
 
+  reciveFetchUsers: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.PROJECT_FETCH_USERS_RESPONSE,
+      json: json,
+      errors: errors
+    });
+  },
+
 };

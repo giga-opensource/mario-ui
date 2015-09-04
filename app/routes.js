@@ -12,12 +12,16 @@ var FindPassword = require('./components/password/find.js');
 var ShowProject = require('./components/projects/show.js');
 var CreateProject = require('./components/projects/new.js');
 
+var Profile = require('./components/profile.js')
+
 var Dashboard = require('./components/dashboard.js');
 var NotFound = require('./components/404.js');
+
 
 module.exports = (
   <Route name='root' path='/'>
     <Route name='login' handler={Login} path='/s/login'/>
+    <Route name='profile' handler={Profile} path='/profile'/>
     <Route name='dashboard' handler={Dashboard} path='/dashboard'/>
     <Route name="password">
       <Route name="findPassword" path="/password/new" handler={FindPassword} />

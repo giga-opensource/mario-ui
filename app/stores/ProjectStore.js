@@ -7,7 +7,8 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _errors = [];
-var _projects = []
+var _projects = [];
+var _users = [];
 
 var ProjectStore = assign({}, EventEmitter.prototype, {
 
@@ -50,6 +51,10 @@ var ProjectStore = assign({}, EventEmitter.prototype, {
       };
     }
   },
+
+  getUsers: function(){
+    return (_users || [] );
+  },
 });
 
 ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {
@@ -62,6 +67,10 @@ ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     case ActionTypes.PROJECT_NEW_RESPONSE:
       _projects.push(action.json);
+      ProjectStore.emitChange();
+      break;
+    case ActionTypes.PROJECT_FETCH_USERS_RESPONSE:
+      _users = action.json;
       ProjectStore.emitChange();
       break;
 
