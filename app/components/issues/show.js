@@ -7,7 +7,8 @@ IssueTracker = require('./issue_tracker.js')
 IssuePriority = require('./issue_priority.js')
 IssueTargetVersion = require('./issue_target_version.js')
 IssueStatus = require('./issue_status.js')
-IssueAssignee = require('./issue_assignee')
+IssueAssignee = require('./issue_assignee.js')
+IssueDueDate = require('./issue_due_date.js')
 
 IssueAttachments = require('./issue_attachments.js')
 IssueActivities = require('./issue_activities.js')
@@ -32,14 +33,16 @@ module.exports = React.createClass({
             <IssueSubject id={issue.id}/>
             <div className="issue-card__section">
               <div>
-                <p>
-                  Assignee:
-                  <IssueAssignee id={issue.id} />
-                </p>
+                Due Date:
+                <IssueDueDate id={issue.id} />
               </div>
-              <p>
+              <div>
+                Assignee:
+                <IssueAssignee id={issue.id} />
+              </div>
+              <div>
                 Creator: <span>{issue.creator ? issue.creator.username : null}</span>
-              </p>
+              </div>
             </div>
             <IssueDescription id={issue.id} />
             <IssueAttachments id={issue.id}/>
