@@ -55,6 +55,18 @@ var ProjectStore = assign({}, EventEmitter.prototype, {
   getUsers: function(){
     return (_users || [] );
   },
+  getUser: function(userId){
+    var user;
+    var users = this.getUsers();
+    for(i = 0; i< users.length; i++) {
+      _user = users[i];
+      if(_user.id == userId){
+        user = _user;
+        break;
+      };
+    }
+    return user;
+  },
 });
 
 ProjectStore.dispatchToken = AppDispatcher.register(function(payload) {

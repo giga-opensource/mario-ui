@@ -7,6 +7,7 @@ IssueTracker = require('./issue_tracker.js')
 IssuePriority = require('./issue_priority.js')
 IssueTargetVersion = require('./issue_target_version.js')
 IssueStatus = require('./issue_status.js')
+IssueAssignee = require('./issue_assignee')
 
 IssueAttachments = require('./issue_attachments.js')
 IssueActivities = require('./issue_activities.js')
@@ -33,9 +34,8 @@ module.exports = React.createClass({
               <div>
                 <p>
                   Assignee:
-                  <span>{issue.assignee ? issue.assignee.username : 'No Assignee'}</span>
+                  <IssueAssignee id={issue.id} />
                 </p>
-
               </div>
               <p>
                 Creator: <span>{issue.creator ? issue.creator.username : null}</span>
