@@ -15,10 +15,16 @@ var Utils = require('./../app/utils/utils');
 
 describe("Utils", function() {
 
-  it("should return desired array", function() {
+  it("map should return desired array", function() {
     var origin = [1,2,3];
     var result = Utils.map(origin, function(item){ item * 2});
     expect(result).toEqual([2,4,6]);
+  });
+
+  it("reduce should return desired result", function() {
+    var origin = [1,2,3];
+    var result = Utils.reduce(origin, function(memo, item){ return memo + item }, 0);
+    expect(result).toEqual(6);
   });
 
 });

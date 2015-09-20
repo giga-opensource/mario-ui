@@ -1,7 +1,10 @@
 Utils = {
   map: function(list, iterator) {
-    // return [2,4,6]
-    return list;
+    // return [2,4,6];
+  },
+
+  reduce: function(list, iterator, memo) {
+    // return 6;
   }
 };
 
