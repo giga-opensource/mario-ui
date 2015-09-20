@@ -9,13 +9,11 @@ var DefaultRoute = Router.DefaultRoute;
 
 // react components
 var AppRoot = require('./root.js');
-var Login = require('./components/login.js');
 var Dashboard = require('./components/dashboard.js');
 var NotFound = require('./components/404.js');
 
 var routes = (
   <Route name='root' path='/'>
-    <Route handler={Login} path='/s/login'/>
     <Route handler={Dashboard} path='/dashboard'/>
     <DefaultRoute handler={AppRoot}/>
     <NotFoundRoute handler={NotFound} />

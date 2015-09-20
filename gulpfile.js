@@ -12,6 +12,7 @@ var gutil = require('gulp-util');
 var shell = require('gulp-shell');
 var glob = require('glob');
 var livereload = require('gulp-livereload');
+var jasmine = require('gulp-jasmine');
 var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
 var connect = require('gulp-connect');
 var rev = require('gulp-rev');
@@ -220,5 +221,6 @@ gulp.task('deploy', function () {
 });
 
 gulp.task('test', function () {
-  return gulp.src('./build/testrunner-phantomjs.html').pipe(jasminePhantomJs());
+  return gulp.src('specs/test.js')
+      .pipe(jasmine());
 });

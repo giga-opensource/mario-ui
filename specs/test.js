@@ -11,3 +11,14 @@
 
 // });
 
+var Utils = require('./../app/utils/utils');
+
+describe("Utils", function() {
+
+  it("should return desired array", function() {
+    var origin = [1,2,3];
+    var result = Utils.map(origin, function(item){ item * 2});
+    expect(result).toEqual([2,4,6]);
+  });
+
+});

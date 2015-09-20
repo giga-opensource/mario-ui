@@ -9,11 +9,7 @@ var Root = React.createClass({
     return false
   },
   render: function () {
-    if(this.current_user()) {
-      this.transitionTo('/dashboard');
-    }else {
-      this.transitionTo('/s/login');
-    }
+    this.transitionTo('/dashboard');
     return null;
   }
 });
